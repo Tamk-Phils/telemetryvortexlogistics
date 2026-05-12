@@ -20,7 +20,7 @@ export default function TermsPage() {
                         USAGE <br/> <span className="text-primary italic">CHARTER.</span>
                     </h1>
                     <p className="text-xl text-slate-500 font-bold leading-relaxed uppercase tracking-tight">
-                        Last Modified: May 2026. Please synchronize with these protocols before utilizing the Vortex Global Telemetry Network.
+                        Last Modified: May 2026. Please synchronize with these protocols before utilizing the Vortex Express Data Network.
                     </p>
                 </motion.div>
 
@@ -30,11 +30,11 @@ export default function TermsPage() {
                             <div className="w-14 h-14 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
                                 <FileText size={28} />
                             </div>
-                            1. PROTOCOL ACCEPTANCE
+                            1. SYSTEM ACCEPTANCE
                         </h2>
                         <div className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed pl-20 space-y-4">
-                            <p>By accessing the Vortex Global platform, you agree to be bound by these Charter protocols. If you are operating on behalf of an institution, you represent that you have the authority to bind that node to these terms.</p>
-                            <p>Vortex Global reserves the right to modify these protocols at any millisecond. Continued telemetry sync constitutes acceptance of the new charter.</p>
+                            <p>By accessing the Vortex Express platform, you agree to be bound by these Charter protocols. If you are operating on behalf of an institution, you represent that you have the authority to bind that node to these terms.</p>
+                            <p>Vortex Express reserves the right to modify these protocols at any millisecond. Continued telemetry sync constitutes acceptance of the new charter.</p>
                         </div>
                     </section>
 
@@ -43,10 +43,10 @@ export default function TermsPage() {
                             <div className="w-14 h-14 rounded-sm bg-slate-50 border border-slate-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
                                 <Lock size={28} />
                             </div>
-                            2. TELEMETRY OWNERSHIP
+                            2. DATA OWNERSHIP
                         </h2>
                         <div className="text-slate-500 font-bold text-sm uppercase tracking-tight leading-relaxed pl-20 space-y-4">
-                            <p>We prioritize the security of your transit data. All tracking signatures are encrypted in transit. You retain ownership of all telemetry submitted, but grant Vortex Global a non-exclusive license to use such data to optimize the planetary network.</p>
+                            <p>We prioritize the security of your transit data. All tracking signatures are encrypted in transit. You retain ownership of all telemetry submitted, but grant Vortex Express a non-exclusive license to use such data to optimize the planetary network.</p>
                         </div>
                     </section>
 

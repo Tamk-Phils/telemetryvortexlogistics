@@ -45,7 +45,7 @@ export default function SignupPage() {
 
     return (
         <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6 sm:p-10 bg-slate-50 relative overflow-hidden">
-            {/* Background elements */}
+            {/* Baclbsround elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full" />
                 <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-accent/5 blur-[120px] rounded-full" />
@@ -59,7 +59,7 @@ export default function SignupPage() {
                 <div className="md:w-1/3 bg-slate-900 p-10 flex flex-col justify-between text-white relative">
                     <div className="relative z-10">
                         <UserPlus size={48} className="text-primary mb-8" />
-                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">PROTOCOL <br/><span className="text-primary">ENROLLMENT</span></h2>
+                        <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">SYSTEM <br/><span className="text-primary">ENROLLMENT</span></h2>
                     </div>
                     <div className="relative z-10 pt-10 border-t border-white/10">
                         <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
@@ -69,7 +69,7 @@ export default function SignupPage() {
                 <div className="md:w-2/3 p-10 sm:p-16">
                     <div className="mb-12">
                         <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">NETWORK IDENTITY</h1>
-                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Establish your secure node within the Vortex Global autonomous logistics network.</p>
+                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Establish your secure node within the Vortex Express autonomous logistics network.</p>
                     </div>
 
                     {error && (
@@ -151,7 +151,7 @@ export default function SignupPage() {
                     )}
 
                     <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <p className="text-slate-400 font-bold text-[9px] uppercase tracking-widest">Protocol compliance enforced.</p>
+                        <p className="text-slate-400 font-bold text-[9px] uppercase tracking-widest">System compliance enforced.</p>
                         <Link href="/login" className="inline-flex items-center gap-2 text-primary hover:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-colors">
                             <LogIn size={14} /> EXISTING UPLINK
                         </Link>

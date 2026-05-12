@@ -6,9 +6,9 @@ import { Radar, ShieldCheck, Lock, Eye, Database } from "lucide-react";
 export default function PrivacyPage() {
     const sections = [
         {
-            title: "TELEMETRY OVERVIEW",
+            title: "DATA OVERVIEW",
             icon: Eye,
-            content: "At Vortex Global, we prioritize the integrity of your transit data. This protocol describes how we synchronize, secure, and manage your telemetry when you utilize our planetary tracking services."
+            content: "At Vortex Express, we prioritize the integrity of your transit data. This protocol describes how we synchronize, secure, and manage your telemetry when you utilize our planetary tracking services."
         },
         {
             title: "DATA ACQUISITION",
@@ -16,14 +16,14 @@ export default function PrivacyPage() {
             content: "We acquire telemetry directly through node registration, shipment initialization, and system synchronization. This includes tracking signatures, node identifiers, and logistics flow data."
         },
         {
-            title: "PROTOCOL EXECUTION",
+            title: "SYSTEM EXECUTION",
             icon: Radar,
             content: "Acquired telemetry is utilized to maintain network performance, optimize transit routes, and establish real-time synchronization between global logistics endpoints."
         },
         {
             title: "ENCRYPTION STANDARDS",
             icon: ShieldCheck,
-            content: "Vortex Global implements enterprise-grade cryptographic measures. All data packets are encrypted at rest and during transit between nodes using advanced secure protocols."
+            content: "Vortex Express implements enterprise-grade cryptographic measures. All data packets are encrypted at rest and during transit between nodes using advanced secure protocols."
         },
         {
             title: "IDENTITY RIGHTS",
@@ -42,10 +42,10 @@ export default function PrivacyPage() {
                     <div className="text-center mb-24">
                         <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
                             <Radar size={14} className="animate-spin-slow" />
-                            <span className="text-slate-500">Security & Privacy Protocol</span>
+                            <span className="text-slate-500">Security & Privacy System</span>
                         </div>
                         <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-6 uppercase leading-[0.9]">PRIVACY <br/><span className="text-primary italic">LEDGER.</span></h1>
-                        <p className="text-slate-400 font-black text-[10px] uppercase tracking-widest">PROTOCOL REVISION: MAY 2026</p>
+                        <p className="text-slate-400 font-black text-[10px] uppercase tracking-widest">SYSTEM REVISION: MAY 2026</p>
                     </div>
 
                     <div className="bg-slate-50 p-12 md:p-20 rounded-sm border border-slate-200 shadow-3xl space-y-16">

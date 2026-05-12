@@ -99,12 +99,12 @@ export default function AdminLayout({
 
     const menuItems: MenuItem[] = [
         { label: "Overview", icon: LayoutDashboard, href: "/admin/dashboard" },
-        { label: "Active Transits", icon: Package, href: "/admin/dashboard/shipments" },
-        { label: "Initialize Transit", icon: PlusCircle, href: "/admin/dashboard/add" },
+        { label: "Active Deliverys", icon: Package, href: "/admin/dashboard/shipments" },
+        { label: "Initialize Delivery", icon: PlusCircle, href: "/admin/dashboard/add" },
         { label: "Command Accounts", icon: UserProfileIcon, href: "/admin/dashboard/users" },
         { label: "Global Reports", icon: BarChartIcon, href: "/admin/dashboard/reports" },
         { label: "Node Alerts", icon: AlertTriangleIcon, href: "/admin/dashboard/alerts" },
-        { label: "Telemetry Chat", icon: MessageSquare, href: "/admin/dashboard/chat" },
+        { label: "Data Chat", icon: MessageSquare, href: "/admin/dashboard/chat" },
         { label: "Hub Settings", icon: SettingsIcon, href: "/admin/dashboard/settings" },
     ];
 

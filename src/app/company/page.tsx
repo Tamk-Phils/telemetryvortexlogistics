@@ -29,7 +29,7 @@ export default function CompanyPage() {
                             <span className="text-primary italic">REDEFINED.</span>
                         </motion.h1>
                         <p className="text-2xl text-slate-400 font-black leading-tight mb-16 uppercase tracking-tight max-w-2xl">
-                            FOUNDED IN 2021, VORTEX GLOBAL WAS BORN FROM A RADICAL OBSERVATION: THE PLANET'S MOST COMPLEX INDUSTRY WAS OPERATING ON FRAGMENTED, LEGACY TELEMETRY. WE BUILT THE CURE.
+                            FOUNDED IN 2021, VORTEX GLOBAL WAS BORN FROM A RADICAL OBSERVATION: THE PLANET'S MOST COMPLEX INDUSTRY WAS OPERATING ON FRAGMENTED, LEGACY DATA. WE BUILT THE CURE.
                         </p>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ export default function CompanyPage() {
                         {[
                             { label: "FOUNDED", val: "2021" },
                             { label: "GLOBAL HUBS", val: "14" },
-                            { label: "TELEMETRY SYNC / DAY", val: "2.5M+" },
+                            { label: "DATA SYNC / DAY", val: "2.5M+" },
                             { label: "OPERATOR POOL", val: "450+" }
                         ].map((stat, i) => (
                             <div key={i} className="text-left group">
@@ -69,7 +69,7 @@ export default function CompanyPage() {
                                 <div>
                                     <h3 className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-tighter italic">OUR MISSION</h3>
                                     <p className="text-slate-400 font-black text-[10px] uppercase tracking-widest leading-relaxed">
-                                        TO SYNCHRONIZE PLANETARY TRADE BY PROVIDING ABSOLUTE TRANSPARENCY AND PREDICTIVE TELEMETRY TO EVERY OPERATOR IN THE GLOBAL SUPPLY CHAIN.
+                                        TO SYNCHRONIZE PLANETARY TRADE BY PROVIDING ABSOLUTE TRANSPARENCY AND PREDICTIVE DATA TO EVERY OPERATOR IN THE GLOBAL SUPPLY CHAIN.
                                     </p>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@ export default function CompanyPage() {
                             </div>
                         </div>
                         <div className="relative aspect-square rounded-sm overflow-hidden shadow-3xl grayscale hover:grayscale-0 transition-all duration-1000 group">
-                            <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000" alt="Vortex Logistics" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
+                            <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000" alt="Vortex Express" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
                             <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-1000" />
                             <div className="absolute bottom-10 left-10 p-6 bg-slate-900/90 backdrop-blur-md text-white rounded-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                 <p className="text-[10px] font-black uppercase tracking-[0.4em]">NODE VTX-942 / NAIROBI</p>
@@ -114,9 +114,9 @@ export default function CompanyPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                         {[
-                            { icon: ShieldCheck, title: "RADICAL INTEGRITY", desc: "OUR TELEMETRY IS OUR BOND. WE PROVIDE RAW, UNFILTERED TRUTH AT GLOBAL SCALE." },
-                            { icon: Award, title: "PRECISION PROTOCOL", desc: "IN TRANSIT, CENTIMETERS ARE CRITICAL. WE OBSESS OVER EVERY SPATIAL COORDINATE." },
-                            { icon: History, title: "VELOCITY EVOLUTION", desc: "WE MOVE AS FAST AS THE ASSETS WE SYNC, ITERATING PROTOCOLS AT LIGHT SPEED." }
+                            { icon: ShieldCheck, title: "RADICAL INTEGRITY", desc: "OUR DATA IS OUR BOND. WE PROVIDE RAW, UNFILTERED TRUTH AT GLOBAL SCALE." },
+                            { icon: Award, title: "PRECISION SYSTEM", desc: "IN DELIVERY, CENTIMETERS ARE CRITICAL. WE OBSESS OVER EVERY SPATIAL COORDINATE." },
+                            { icon: History, title: "VELOCITY EVOLUTION", desc: "WE MOVE AS FAST AS THE ASSETS WE SYNC, ITERATING SYSTEMS AT LIGHT SPEED." }
                         ].map((v, i) => (
                             <div key={i} className="p-12 bg-white/5 border border-white/5 rounded-sm hover:bg-white/10 transition-all group hover:border-primary/30 relative">
                                 <div className="absolute top-0 left-0 w-1 h-0 bg-primary group-hover:h-full transition-all duration-500" />

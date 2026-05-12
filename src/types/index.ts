@@ -1,4 +1,4 @@
-export type ShipmentStatus = 'Pending' | 'In Transit' | 'Out for Delivery' | 'Delivered' | 'Held' | 'Postponed';
+export type ShipmentStatus = 'Pending' | 'In Delivery' | 'Out for Delivery' | 'Delivered' | 'Held' | 'Postponed';
 
 export interface ShipmentUpdate {
     id: string;

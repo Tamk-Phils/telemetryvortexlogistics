@@ -12,36 +12,41 @@ export default function Logo({ className = "w-10 h-10" }: { className?: string }
                 <defs>
                     <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#0070F3" />
-                        <stop offset="100%" stopColor="#7C3AED" />
+                        <stop offset="100%" stopColor="#64748b" />
                     </linearGradient>
                 </defs>
                 
                 {/* Outer Ring */}
                 <motion.circle 
                     cx="50" cy="50" r="45" 
-                    stroke="url(#logoGradient)" 
-                    strokeWidth="2" 
-                    strokeDasharray="10 20"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    stroke="#e2e8f0" 
+                    strokeWidth="1" 
                 />
 
-                {/* Vortex V-Shape */}
+                {/* Pulsing Data Rings */}
+                <motion.circle 
+                    cx="50" cy="50" r="35" 
+                    stroke="#0070F3" 
+                    strokeWidth="0.5"
+                    strokeDasharray="4 8"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                />
+
+                {/* Vortex T-Shape (for Data) */}
                 <path 
-                    d="M20 30L50 80L80 30" 
+                    d="M30 35H70M50 35V75" 
                     stroke="url(#logoGradient)" 
-                    strokeWidth="10" 
+                    strokeWidth="12" 
                     strokeLinecap="round" 
-                    strokeLinejoin="round"
-                    className="drop-shadow-sm"
                 />
                 
-                {/* Center Node */}
+                {/* Precision Center Node */}
                 <motion.circle 
-                    cx="50" cy="50" r="8" 
+                    cx="50" cy="50" r="4" 
                     fill="#0070F3"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 4, repeat: Infinity }}
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{ duration: 2, repeat: Infinity }}
                 />
             </svg>
         </motion.div>

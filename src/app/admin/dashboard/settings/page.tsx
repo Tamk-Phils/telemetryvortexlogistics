@@ -25,7 +25,7 @@ export default function SettingsPage() {
                         { label: "GENERAL", icon: Settings, active: true },
                         { label: "SECURITY", icon: Shield, active: false },
                         { label: "NETWORK", icon: Globe, active: false },
-                        { label: "TELEMETRY", icon: Bell, active: false },
+                        { label: "DATA", icon: Bell, active: false },
                         { label: "API WEBHOOKS", icon: RefreshCw, active: false },
                         { label: "TRANSACTIONS", icon: CreditCard, active: false },
                     ].map((item, i) => (
@@ -61,7 +61,7 @@ export default function SettingsPage() {
                             </h3>
                             <div className="space-y-6">
                                 {[
-                                    { label: "EMAIL TELEMETRY UPDATES", desc: "Notify nodes instantly when transit protocol changes.", enabled: true },
+                                    { label: "EMAIL DATA UPDATES", desc: "Notify nodes instantly when transit protocol changes.", enabled: true },
                                     { label: "SMS EMERGENCY ALERTS", desc: "Critical alerts for delayed or held asset packets.", enabled: false },
                                     { label: "WEBHOOK SYNC", desc: "Push data to external institutional ERP systems.", enabled: true },
                                 ].map((opt, i) => (

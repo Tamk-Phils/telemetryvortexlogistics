@@ -158,7 +158,7 @@ export default function AdminChat() {
                         </div>
                     ) : rooms.length === 0 ? (
                         <div className="text-center p-12 space-y-4">
-                            <p className="font-black text-slate-300 text-[10px] uppercase tracking-widest italic">NO ACTIVE TELEMETRY CHATS</p>
+                            <p className="font-black text-slate-300 text-[10px] uppercase tracking-widest italic">NO ACTIVE DATA CHATS</p>
                             <p className="text-[9px] text-slate-300 font-bold uppercase tracking-tight">NEW NODE MESSAGES WILL APPEAR HERE.</p>
                         </div>
                     ) : (
@@ -292,7 +292,7 @@ export default function AdminChat() {
                         <div className="max-w-md space-y-4 relative z-10">
                             <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">INITIALIZE COMMUNICATION</h3>
                             <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.3em] leading-relaxed">
-                                SELECT AN ACTIVE PLANETARY NODE FROM THE DIRECTORY TO INITIATE LIVE TELEMETRY SUPPORT.
+                                SELECT AN ACTIVE PLANETARY NODE FROM THE DIRECTORY TO INITIATE LIVE DATA SUPPORT.
                             </p>
                         </div>
                     </div>

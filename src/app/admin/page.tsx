@@ -29,7 +29,7 @@ export default function AdminLogin() {
 
     return (
         <div className="flex items-center justify-center min-h-screen p-6 bg-white relative overflow-hidden">
-            {/* Background glow */}
+            {/* Baclbsround glow */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
             <motion.div

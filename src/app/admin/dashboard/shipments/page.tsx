@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Search, Plus, Filter, Edit2, Trash2, ArrowUpRight, Package, RefreshCw, X, Save, MapPin, Clock, Copy, Check, Radar, Activity, Zap } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 const MapPicker = dynamic(() => import("@/components/MapPicker"), { ssr: false });
@@ -109,7 +110,7 @@ export default function ShipmentsList() {
             });
             setShipments(updated);
             localStorage.setItem("vortex_shipments", JSON.stringify(updated));
-            alert(`Transit ${id} restored successfully.`);
+            alert(`Delivery ${id} restored successfully.`);
         } catch (err) {
             console.error(err);
             alert("Failed to restore transit.");
@@ -177,7 +178,7 @@ export default function ShipmentsList() {
             if (editingShipment.recipient_email) {
                 await notifyShipmentUpdate({
                     to: editingShipment.recipient_email,
-                    subject: `Vortex Global: Transit Update ${editingShipment.tracking_number}`,
+                    subject: `Vortex Express: Delivery Update ${editingShipment.tracking_number}`,
                     trackingNumber: editingShipment.tracking_number,
                     recipientName: editingShipment.recipient_name || 'Operator',
                     newStatus: newUpdate.status,
@@ -213,7 +214,7 @@ export default function ShipmentsList() {
                         <Radar size={20} className="text-primary animate-pulse" />
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Fleet Management</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">TRANSIT <br/><span className="text-primary italic">PROTOCOLS.</span></h1>
+                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">DELIVERY <br/><span className="text-primary italic">SYSTEMS.</span></h1>
                 </div>
                 <div className="flex gap-4">
                     <button
@@ -227,13 +228,16 @@ export default function ShipmentsList() {
                         href="/admin/dashboard/add"
                         className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest transition-all shadow-xl flex items-center gap-4"
                     >
-                        <Plus size={20} /> INITIALIZE TRANSIT
+                        <Plus size={20} /> INITIALIZE DELIVERY
                     </Link>
                 </div>
             </div>
 
-            <div className="bg-white rounded-sm overflow-hidden border border-slate-200 shadow-3xl">
-                <div className="p-10 border-b border-slate-100 flex flex-wrap gap-8 justify-between items-center bg-slate-50/50">
+            <div className="bg-white rounded-sm overflow-hidden border border-slate-200 shadow-3xl relative">
+                <div className="absolute top-0 right-0 w-full h-full opacity-[0.015] grayscale pointer-events-none">
+                     <Image src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2000" alt="Warehouse" fill className="object-cover" />
+                </div>
+                <div className="p-10 border-b border-slate-100 flex flex-wrap gap-8 justify-between items-center bg-slate-50/50 relative z-10">
                     <div className="relative w-full max-w-xl">
                         <input
                             type="text"
@@ -257,15 +261,15 @@ export default function ShipmentsList() {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto relative z-10">
                     {isLoading && shipments.length === 0 ? (
-                        <div className="p-32 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest animate-pulse">CONNECTING TO GLOBAL TELEMETRY CLUSTER...</div>
+                        <div className="p-32 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest animate-pulse">CONNECTING TO GLOBAL DATA CLUSTER...</div>
                     ) : (
                         <>
                             <table className="w-full text-left">
                                 <thead>
                                     <tr className="bg-slate-900 text-white">
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">TRANSIT SIGNATURE</th>
+                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">DELIVERY SIGNATURE</th>
                                         <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden md:table-cell">NODE TOPOLOGY</th>
                                         <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">OPERATIONAL STATUS</th>
                                         <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] text-right">COMMANDS</th>
@@ -274,7 +278,7 @@ export default function ShipmentsList() {
                                 <tbody className="divide-y divide-slate-100">
                                     {filteredShipments.length > 0 ? (
                                         filteredShipments.map((shipment, i) => (
-                                            <tr key={i} className="hover:bg-slate-50 transition-colors group">
+                                            <tr key={i} className="hover:bg-slate-50 transition-colors group bg-white/40">
                                                 <td className="px-10 py-8">
                                                     <div className="flex items-center gap-5">
                                                         <div className="p-3 bg-slate-50 border border-slate-100 rounded-sm text-slate-300 group-hover:text-primary group-hover:border-primary/20 transition-all">
@@ -344,13 +348,13 @@ export default function ShipmentsList() {
                                     ) : (
                                         <tr>
                                             <td colSpan={4} className="px-10 py-32 text-center bg-slate-50/50">
-                                                <p className="text-slate-300 font-black text-[10px] uppercase tracking-[0.4em]">NO TRANSIT RECORDS DISCOVERED</p>
+                                                <p className="text-slate-300 font-black text-[10px] uppercase tracking-[0.4em]">NO DELIVERY RECORDS DISCOVERED</p>
                                             </td>
                                         </tr>
                                     )}
                                 </tbody>
                             </table>
-                            <div className="p-10 bg-slate-50/50 border-t border-slate-200">
+                            <div className="p-10 bg-slate-50/50 border-t border-slate-200 relative z-10">
                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SYNCHRONIZED WITH {filteredShipments.length} ACTIVE GLOBAL ASSET PACKETS</p>
                             </div>
                         </>
@@ -364,7 +368,7 @@ export default function ShipmentsList() {
                     <div className="bg-white w-full max-w-xl max-h-[90vh] flex flex-col rounded-sm shadow-3xl overflow-hidden border border-slate-200 animate-in zoom-in-95 duration-300">
                         <div className="p-12 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 shrink-0">
                             <div>
-                                <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">PUSH TELEMETRY</h3>
+                                <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">PUSH DATA</h3>
                                 <p className="text-[10px] font-black text-primary mt-2 uppercase tracking-widest">ID: {editingShipment.tracking_number}</p>
                             </div>
                             <button
@@ -386,7 +390,7 @@ export default function ShipmentsList() {
                                         required
                                     >
                                         <option value="Pending">Pending</option>
-                                        <option value="In Transit">In Transit</option>
+                                        <option value="In Delivery">In Delivery</option>
                                         <option value="Out for Delivery">Out for Delivery</option>
                                         <option value="Delivered">Delivered</option>
                                         <option value="Held">Held at Customs</option>
@@ -408,7 +412,7 @@ export default function ShipmentsList() {
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">TELEMETRY LOG</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">DATA LOG</label>
                                 <textarea
                                     className="w-full bg-slate-50 border border-slate-200 rounded-sm py-6 px-8 focus:outline-none focus:border-primary font-bold text-slate-500 text-xs min-h-[120px] outline-none resize-none uppercase tracking-tight"
                                     placeholder="ENTER DESCRIPTIVE VARIANCE LOG..."
@@ -430,7 +434,7 @@ export default function ShipmentsList() {
                                     type="submit"
                                     className="flex-1 bg-slate-900 hover:bg-primary text-white py-6 rounded-sm font-black text-[10px] uppercase tracking-[0.4em] shadow-xl flex items-center justify-center gap-4 transition-all"
                                 >
-                                    <Save size={20} /> SYNC PROTOCOL
+                                    <Save size={20} /> SYNC SYSTEM
                                 </button>
                             </div>
                         </form>

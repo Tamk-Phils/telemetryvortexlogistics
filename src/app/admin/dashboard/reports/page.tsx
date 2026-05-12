@@ -6,7 +6,7 @@ import { BarChart3, TrendingUp, TrendingDown, Ship, Plane, Truck, Download, Cale
 export default function ReportsPage() {
     const stats = [
         { label: "PLANETARY REVENUE", val: "$428,500", change: "+12.5%", trend: "up", color: "text-primary" },
-        { label: "ACTIVE TRANSITS", val: "1,842", change: "+4.2%", trend: "up", color: "text-primary" },
+        { label: "ACTIVE DELIVERYS", val: "1,842", change: "+4.2%", trend: "up", color: "text-primary" },
         { label: "NODE SYNC TIME", val: "4.2 DAYS", change: "-0.5 DAYS", trend: "down", color: "text-primary" },
         { label: "FUEL SURCHARGE", val: "18.5%", change: "+2.1%", trend: "up", color: "text-red-500" },
     ];

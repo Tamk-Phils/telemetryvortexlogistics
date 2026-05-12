@@ -89,7 +89,7 @@ export default function TrackingSearch() {
                     disabled={isSearching}
                     className="w-full md:w-auto bg-slate-900 hover:bg-primary text-white px-12 py-6 rounded-sm font-black text-xs uppercase tracking-[0.3em] transition-all disabled:opacity-50 whitespace-nowrap shadow-md"
                 >
-                    {isSearching ? "SYNCING..." : "SYNC TELEMETRY"}
+                    {isSearching ? "SYNCING..." : "SYNC DATA"}
                 </button>
             </form>
 
@@ -118,7 +118,7 @@ export default function TrackingSearch() {
                         {/* Top Banner Status */}
                         <div className="bg-slate-900 p-10 flex flex-wrap justify-between items-center gap-8 border-b border-slate-800">
                              <div className="space-y-2">
-                                <p className="text-primary text-[10px] font-black uppercase tracking-[0.4em]">TRANSIT STATUS</p>
+                                <p className="text-primary text-[10px] font-black uppercase tracking-[0.4em]">DELIVERY STATUS</p>
                                 <div className="flex items-center gap-4">
                                     <h2 className="text-4xl font-black text-white tracking-tighter uppercase">{result.current_status || "PROCESSING"}</h2>
                                     <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shadow-[0_0_10px_rgba(0,242,255,0.8)]" />
@@ -160,7 +160,7 @@ export default function TrackingSearch() {
                                         <div className="flex justify-center mt-6">
                                             <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-primary">
                                                 <Zap size={14} className="animate-pulse" />
-                                                SECURE IN-TRANSIT
+                                                SECURE IN-DELIVERY
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +177,7 @@ export default function TrackingSearch() {
                                 <div className="mb-20 h-[500px] w-full rounded-sm overflow-hidden shadow-2xl relative border border-slate-200 group">
                                     <div className="absolute top-8 left-8 z-[400] bg-slate-900 text-white px-6 py-3 rounded-sm shadow-2xl flex items-center gap-4">
                                         <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,242,255,0.8)]" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">LIVE TELEMETRY VERIFIED</span>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">LIVE DATA VERIFIED</span>
                                     </div>
                                     <div className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-80 group-hover:opacity-100">
                                         <LiveMap lat={result.latitude} lng={result.longitude} zoom={13} />
@@ -192,7 +192,7 @@ export default function TrackingSearch() {
                                         <div className="space-y-6">
                                             <div className="flex items-center gap-3 text-slate-900 font-black text-[10px] uppercase tracking-[0.3em] border-b border-slate-100 pb-4">
                                                 <User size={16} className="text-primary" />
-                                                SENDER PROTOCOL
+                                                SENDER SYSTEM
                                             </div>
                                             <div className="space-y-4">
                                                 <div>
@@ -272,7 +272,7 @@ export default function TrackingSearch() {
                             <div className="mt-32 space-y-16 relative before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-[1px] before:bg-slate-100">
                                 <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-[0.5em] mb-12 flex items-center gap-4">
                                     <div className="w-10 h-[1px] bg-primary" />
-                                    TELEMETRY LOGS
+                                    DATA LOGS
                                 </h3>
                                 {result.updates.map((update: ShipmentUpdate, idx: number) => (
                                     <div key={idx} className="relative pl-16 group">

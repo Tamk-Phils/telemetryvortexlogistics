@@ -10,34 +10,34 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Vortex Global | Velocity Logistics Intelligence",
-    template: "%s | Vortex Global"
+    default: "Vortex Express | Fast & Reliable Global Shipping",
+    template: "%s | Vortex Express"
   },
-  description: "Next-generation real-time shipment tracking powered by cloud telemetry and autonomous systems. Global visibility reimagined.",
-  keywords: ["logistics tracking", "vortex global", "logistics AI", "autonomous transit", "cloud telemetry", "high speed delivery"],
-  authors: [{ name: "Vortex Intelligence Core" }],
-  creator: "Vortex Global",
-  publisher: "Vortex Global Infrastructure",
+  description: "Next-generation real-time shipment tracking and global logistics solutions. Move your world with Vortex Express.",
+  keywords: ["logistics tracking", "vortex logistics", "shipping company", "global delivery", "package tracking", "fast shipping"],
+  authors: [{ name: "Vortex Team" }],
+  creator: "Vortex Express",
+  publisher: "Vortex Express Inc",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://vortex-global.io"),
+  metadataBase: new URL("https://vortex-logistics.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Vortex Global | Velocity Logistics Intelligence",
-    description: "The definitive logistics intelligence platform. Harnessing cloud telemetry to redefine global transit velocity.",
-    url: "https://vortex-global.io",
-    siteName: "Vortex Global",
+    title: "Vortex Express | Fast & Reliable Global Shipping",
+    description: "The simplest and most reliable way to ship and track your packages worldwide. Move your world with Vortex Express.",
+    url: "https://vortex-logistics.com",
+    siteName: "Vortex Express",
     images: [
       {
         url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
         width: 1200,
         height: 630,
-        alt: "Vortex Global Infrastructure",
+        alt: "Vortex Express Center",
       },
     ],
     locale: "en_US",
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vortex Global | Velocity Logistics Intelligence",
-    description: "The definitive logistics intelligence platform. Harnessing cloud telemetry to redefine global transit velocity.",
+    title: "Vortex Express | Fast & Reliable Global Shipping",
+    description: "The simplest and most reliable way to ship and track your packages worldwide. Move your world with Vortex Express.",
     images: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200"],
   },
   robots: {

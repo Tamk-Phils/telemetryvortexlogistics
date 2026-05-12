@@ -54,7 +54,7 @@ export default function AlertsPage() {
                             SYSTEM <span className="text-primary italic">STATUS.</span>
                         </h1>
                         <p className="text-xl text-slate-500 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-tight">
-                            Monitor the health of the Vortex Global infrastructure and stay synchronized with factors affecting your transits.
+                            Monitor the health of the Vortex Express infrastructure and stay synchronized with factors affecting your transits.
                         </p>
                     </div>
 
@@ -79,7 +79,7 @@ export default function AlertsPage() {
                     <div className="space-y-12">
                         <h3 className="text-[10px] font-black text-slate-900 mb-10 flex items-center gap-4 uppercase tracking-[0.4em]">
                             <AlertTriangle className="text-amber-500" size={20} />
-                            ACTIVE TELEMETRY ALERTS
+                            ACTIVE DATA ALERTS
                         </h3>
                         {alerts.map((alert) => (
                             <motion.div 
@@ -119,7 +119,7 @@ export default function AlertsPage() {
 
                     <div className="bg-slate-900 rounded-sm p-20 text-white text-center relative overflow-hidden shadow-3xl">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
-                        <p className="text-[10px] font-black text-primary mb-4 uppercase tracking-[0.5em]">PROTOCOL ENFORCEMENT</p>
+                        <p className="text-[10px] font-black text-primary mb-4 uppercase tracking-[0.5em]">SYSTEM ENFORCEMENT</p>
                         <h4 className="text-5xl font-black mb-8 tracking-tighter uppercase">STAY AHEAD OF <br/><span className="italic">THE VORTEX.</span></h4>
                         <p className="text-white/40 font-bold mb-16 max-w-2xl mx-auto uppercase tracking-tight text-lg leading-relaxed">
                             Establish a direct SMS relay for critical telemetry dispatches. We synchronize your operations the millisecond a node detects potential variance.

@@ -8,7 +8,7 @@ export default function AlertsManager() {
     const [alerts, setAlerts] = useState([
         { id: 1, type: "Warning", title: "GEOMAGNETIC INTERFERENCE: NORTH ATLANTIC HUB", impact: "HIGH", status: "PUBLISHED" },
         { id: 2, type: "Info", title: "SINGAPORE PORT SYNC UNDERWAY", impact: "LOW", status: "PUBLISHED" },
-        { id: 3, type: "Success", title: "NEW TELEMETRY NODE: NAIROBI", impact: "POSITIVE", status: "PUBLISHED" },
+        { id: 3, type: "Success", title: "NEW DATA NODE: NAIROBI", impact: "POSITIVE", status: "PUBLISHED" },
     ]);
 
     return (
@@ -32,7 +32,7 @@ export default function AlertsManager() {
                         <div className="p-10 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                             <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-[0.4em]">ACTIVE BROADCAST BOARD</h3>
                             <div className="flex items-center gap-3 text-[9px] font-black uppercase tracking-widest text-primary bg-primary/5 px-4 py-1.5 rounded-sm border border-primary/10">
-                                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> LIVE TELEMETRY
+                                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" /> LIVE DATA
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@ export default function AlertsManager() {
                         </p>
                         
                         <div className="space-y-6">
-                            <label className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] block">PROTOCOL TEMPLATES</label>
+                            <label className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em] block">SYSTEM TEMPLATES</label>
                             <div className="grid grid-cols-2 gap-4">
                                 {['GEOMAGNETIC', 'PORT SYNC', 'AEROSPACE', 'HUB ALERT'].map(t => (
                                     <button key={t} className="bg-white/5 border border-white/10 p-5 rounded-sm text-[9px] font-black uppercase tracking-widest hover:bg-primary hover:border-primary transition-all">{t}</button>
@@ -92,7 +92,7 @@ export default function AlertsManager() {
 
                     <div className="bg-white p-12 rounded-sm border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full group-hover:scale-150 transition-transform duration-700" />
-                        <h4 className="text-[10px] font-black text-slate-900 mb-2 relative z-10 uppercase tracking-[0.4em]">BOARD TELEMETRY</h4>
+                        <h4 className="text-[10px] font-black text-slate-900 mb-2 relative z-10 uppercase tracking-[0.4em]">BOARD DATA</h4>
                         <p className="text-slate-400 font-bold text-[10px] mb-8 relative z-10 uppercase tracking-widest">Global Node Interaction Metrics</p>
                         
                         <div className="space-y-6">

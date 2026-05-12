@@ -52,13 +52,13 @@ export default function UserManagement() {
                         <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
                         <input 
                             type="text" 
-                            placeholder="SEARCH BY IDENTITY, UPLINK OR PROTOCOL..." 
+                            placeholder="SEARCH BY IDENTITY, UPLINK OR SYSTEM..." 
                             className="w-full bg-white border border-slate-200 rounded-sm py-4 px-8 pl-16 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-300 outline-none"
                         />
                     </div>
                     <div className="flex items-center gap-8">
                         <button className="flex items-center gap-3 text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-primary transition-all">
-                            <Filter size={18} /> FILTER PROTOCOLS
+                            <Filter size={18} /> FILTER SYSTEMS
                         </button>
                         <div className="h-6 w-[1px] bg-slate-200" />
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SHOWING 4 / 1,280 AUTHORIZED NODES</span>
@@ -70,7 +70,7 @@ export default function UserManagement() {
                         <thead>
                             <tr className="bg-slate-900 text-white">
                                 <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">NODE IDENTITY</th>
-                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">PROTOCOL ROLE</th>
+                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">SYSTEM ROLE</th>
                                 <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">SYNC STATUS</th>
                                 <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">LAST UPLINK</th>
                                 <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]"></th>
