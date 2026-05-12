@@ -91,7 +91,7 @@ const SidebarContent = ({
 export default function AdminLayout({
     children,
 }: {
-    children: React.ReactOffice;
+    children: React.ReactNode;
 }) {
     const pathname = usePathname();
     const router = useRouter();

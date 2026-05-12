@@ -1,7 +1,7 @@
-import officemailer from 'officemailer';
+import nodemailer from 'nodemailer';
 
 // Initialize the SMTP transporter
-const transporter = officemailer.createTransport({
+const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.spacemail.com',
     port: parseInt(process.env.SMTP_PORT || '465'),
     secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
@@ -102,7 +102,7 @@ export async function sendShipmentCreatedEmail({
         });
         return { success: true };
     } catch (error) {
-        console.error("Officemailer Error:", error);
+        console.error("Nodemailer Error:", error);
         return { success: false, error };
     }
 }
@@ -167,7 +167,7 @@ export async function sendShipmentUpdateEmail({
         });
         return { success: true };
     } catch (error) {
-        console.error("Officemailer Error:", error);
+        console.error("Nodemailer Error:", error);
         return { success: false, error };
     }
 }
