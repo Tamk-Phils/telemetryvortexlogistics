@@ -8,8 +8,8 @@ export default function AlertsPage() {
         { 
             id: 1, 
             type: "warning", 
-            title: "Severe Weather: North Atlantic", 
-            description: "Winter Storm 'Epsilon' is causing 24-48 hour delays for maritime freight between NYC and Rotterdam.",
+            title: "Winter Storm: East Coast", 
+            description: "Heavy snow is causing 24-hour delays for all shipments moving through New York and Boston hubs.",
             icon: Wind,
             impact: "High",
             date: "Today, 08:30 AM"
@@ -17,8 +17,8 @@ export default function AlertsPage() {
         { 
             id: 2, 
             type: "info", 
-            title: "Singapore Port Maintenance", 
-            description: "Scheduled berth upgrades at Terminal 4. Expect slight delays in container processing through Friday.",
+            title: "Port of Long Beach Maintenance", 
+            description: "Scheduled equipment upgrades at the main terminal. Expect slight delays in processing through Friday.",
             icon: Anchor,
             impact: "Low",
             date: "Yesterday, 14:15 PM"
@@ -26,8 +26,8 @@ export default function AlertsPage() {
         { 
             id: 3, 
             type: "success", 
-            title: "Air Cargo Expansion: Nairobi Hub", 
-            description: "New direct freighter routes established between London Heathrow and Nairobi Jomo Kenyatta.",
+            title: "New Hub: Chicago O'Hare", 
+            description: "Our new automated sorting facility in Chicago is now fully operational, speeding up midwest deliveries.",
             icon: Plane,
             impact: "Positive",
             date: "Apr 07, 2026"
@@ -35,10 +35,10 @@ export default function AlertsPage() {
     ];
 
     const systems = [
-        { name: "Global Tracking API", status: "Operational", color: "bg-emerald-500" },
-        { name: "Maritime Transponders", status: "Operational", color: "bg-emerald-500" },
-        { name: "Air Freight Manifests", status: "Optimal", color: "bg-blue-500" },
-        { name: "Warehouse Robotics", status: "Maintenance", color: "bg-amber-500" },
+        { name: "Live Tracking System", status: "Working", color: "bg-emerald-500" },
+        { name: "Ground Fleet Tracking", status: "Working", color: "bg-emerald-500" },
+        { name: "Air Cargo Updates", status: "Perfect", color: "bg-blue-500" },
+        { name: "Warehouse Sorting", status: "Maintenance", color: "bg-amber-500" },
     ];
 
     return (
@@ -48,20 +48,20 @@ export default function AlertsPage() {
                     <div className="text-center">
                         <div className="inline-flex items-center gap-3 bg-white text-primary px-6 py-2.5 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] border border-slate-200 mb-10 shadow-sm">
                             <Radar size={14} className="animate-spin-slow" />
-                            <span className="text-slate-500">Live Operational Intelligence</span>
+                            <span className="text-slate-500">Live Service Status</span>
                         </div>
                         <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-8 uppercase leading-[0.9]">
                             SYSTEM <span className="text-primary italic">STATUS.</span>
                         </h1>
                         <p className="text-xl text-slate-500 font-bold max-w-3xl mx-auto leading-relaxed uppercase tracking-tight">
-                            Monitor the health of the Vortex Express infrastructure and stay synchronized with factors affecting your transits.
+                            Check the health of our shipping network and stay updated on anything that might affect your package.
                         </p>
                     </div>
 
                     <div className="bg-slate-50 rounded-sm p-12 border border-slate-200 shadow-sm">
                         <h3 className="text-[10px] font-black text-slate-900 mb-10 flex items-center gap-4 uppercase tracking-[0.4em]">
                             <CheckCircle2 className="text-primary" size={20} />
-                            CORE INFRASTRUCTURE
+                            CORE SYSTEMS
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {systems.map((sys, i) => (
@@ -79,7 +79,7 @@ export default function AlertsPage() {
                     <div className="space-y-12">
                         <h3 className="text-[10px] font-black text-slate-900 mb-10 flex items-center gap-4 uppercase tracking-[0.4em]">
                             <AlertTriangle className="text-amber-500" size={20} />
-                            ACTIVE DATA ALERTS
+                            ACTIVE ALERTS
                         </h3>
                         {alerts.map((alert) => (
                             <motion.div 
@@ -109,7 +109,7 @@ export default function AlertsPage() {
                                             IMPACT: {alert.impact}
                                         </div>
                                         <button className="text-primary font-black text-[10px] uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-2 transition-transform">
-                                            DEEP INTEL <Zap size={14} />
+                                            VIEW DETAILS <Zap size={14} />
                                         </button>
                                     </div>
                                 </div>
@@ -119,14 +119,14 @@ export default function AlertsPage() {
 
                     <div className="bg-slate-900 rounded-sm p-20 text-white text-center relative overflow-hidden shadow-3xl">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
-                        <p className="text-[10px] font-black text-primary mb-4 uppercase tracking-[0.5em]">SYSTEM ENFORCEMENT</p>
-                        <h4 className="text-5xl font-black mb-8 tracking-tighter uppercase">STAY AHEAD OF <br/><span className="italic">THE VORTEX.</span></h4>
+                        <p className="text-[10px] font-black text-primary mb-4 uppercase tracking-[0.5em]">SMS ALERTS</p>
+                        <h4 className="text-5xl font-black mb-8 tracking-tighter uppercase">STAY UPDATED <br/><span className="italic">IN REAL TIME.</span></h4>
                         <p className="text-white/40 font-bold mb-16 max-w-2xl mx-auto uppercase tracking-tight text-lg leading-relaxed">
-                            Establish a direct SMS relay for critical telemetry dispatches. We synchronize your operations the millisecond a node detects potential variance.
+                            Sign up for text alerts to get notified the moment anything changes with our network. We keep you informed so you can stay ahead.
                         </p>
                         <div className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
-                            <input type="text" placeholder="TERMINAL PHONE NUMBER" className="flex-1 bg-white/5 border border-white/10 rounded-sm py-5 px-8 text-white font-black text-[10px] uppercase tracking-widest outline-none focus:border-primary transition-all" />
-                            <button className="bg-primary hover:bg-white text-slate-900 px-12 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest transition-all shadow-xl">ACTIVATE RELAY</button>
+                            <input type="text" placeholder="YOUR PHONE NUMBER" className="flex-1 bg-white/5 border border-white/10 rounded-sm py-5 px-8 text-white font-black text-[10px] uppercase tracking-widest outline-none focus:border-primary transition-all" />
+                            <button className="bg-primary hover:bg-white text-slate-900 px-12 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest transition-all shadow-xl">START TEXT ALERTS</button>
                         </div>
                     </div>
                 </div>

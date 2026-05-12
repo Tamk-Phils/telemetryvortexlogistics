@@ -23,7 +23,7 @@ export default function UsagePage() {
                             <span className="text-primary italic">Guidelines.</span>
                         </h1>
                         <p className="text-xl text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
-                            Everything you need to know about using the Vortex Express platform safely and effectively. We've simplified our rules to help you get moving faster.
+                            Everything you need to know about using the Vortex Shipping platform safely and effectively. We've simplified our rules to help you get moving faster.
                         </p>
                     </motion.div>
                 </div>
@@ -39,7 +39,7 @@ export default function UsagePage() {
                     <div className="space-y-16">
                         <div className="space-y-6">
                             <h2 className="text-4xl font-black text-slate-900 tracking-tight">Getting Started</h2>
-                            <p className="text-lg text-slate-500 font-medium">Follow these simple steps to start shipping with Vortex Express today.</p>
+                            <p className="text-lg text-slate-500 font-medium">Follow these simple steps to start shipping with Vortex Shipping today.</p>
                         </div>
                         
                         <div className="space-y-12">
@@ -108,7 +108,7 @@ export default function UsagePage() {
             {/* Image Gallery: Logistics in Motion */}
             <section className="py-32 container mx-auto px-6 max-w-7xl">
                <div className="text-center mb-24">
-                   <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-6">Vortex Express in Action</h2>
+                   <h2 className="text-4xl font-black text-slate-900 tracking-tight mb-6">Vortex Shipping in Action</h2>
                    <p className="text-lg text-slate-500 max-w-2xl mx-auto">See how we move millions of packages across the globe every single day.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 h-[600px]">

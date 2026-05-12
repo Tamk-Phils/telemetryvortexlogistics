@@ -91,7 +91,7 @@ const SidebarContent = ({
 export default function AdminLayout({
     children,
 }: {
-    children: React.ReactNode;
+    children: React.ReactOffice;
 }) {
     const pathname = usePathname();
     const router = useRouter();
@@ -103,7 +103,7 @@ export default function AdminLayout({
         { label: "Initialize Delivery", icon: PlusCircle, href: "/admin/dashboard/add" },
         { label: "Command Accounts", icon: UserProfileIcon, href: "/admin/dashboard/users" },
         { label: "Global Reports", icon: BarChartIcon, href: "/admin/dashboard/reports" },
-        { label: "Node Alerts", icon: AlertTriangleIcon, href: "/admin/dashboard/alerts" },
+        { label: "Office Alerts", icon: AlertTriangleIcon, href: "/admin/dashboard/alerts" },
         { label: "Data Chat", icon: MessageSquare, href: "/admin/dashboard/chat" },
         { label: "Hub Settings", icon: SettingsIcon, href: "/admin/dashboard/settings" },
     ];

@@ -62,14 +62,14 @@ export default function SignupPage() {
                         <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">SYSTEM <br/><span className="text-primary">ENROLLMENT</span></h2>
                     </div>
                     <div className="relative z-10 pt-10 border-t border-white/10">
-                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
+                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX SHIPPING</p>
                     </div>
                 </div>
 
                 <div className="md:w-2/3 p-10 sm:p-16">
                     <div className="mb-12">
                         <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">NETWORK IDENTITY</h1>
-                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Establish your secure node within the Vortex Express autonomous logistics network.</p>
+                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Establish your secure office within the Vortex Shipping autonomous logistics network.</p>
                     </div>
 
                     {error && (
@@ -84,7 +84,7 @@ export default function SignupPage() {
                                 <ShieldCheck size={32} />
                             </div>
                             <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest">UPLINK PENDING</h2>
-                            <p className="text-slate-500 font-bold text-xs uppercase tracking-tight px-8">A verification protocol has been dispatched to your inbox. Activate your node to begin telemetry sync.</p>
+                            <p className="text-slate-500 font-bold text-xs uppercase tracking-tight px-8">A verification code has been dispatched to your inbox. Activate your office to begin data sync.</p>
                         </div>
                     ) : (
                         <form onSubmit={handleSignup} className="space-y-8">
@@ -143,7 +143,7 @@ export default function SignupPage() {
                                     <Loader2 className="animate-spin" size={18} />
                                 ) : (
                                     <>
-                                        ESTABLISH NODE <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                                        ESTABLISH OFFICE <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
                                     </>
                                 )}
                             </button>

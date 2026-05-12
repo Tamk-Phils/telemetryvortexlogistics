@@ -16,7 +16,7 @@ export default function DashboardOverview() {
     const [stats, setStats] = useState([
         { label: "TOTAL DELIVERYS", value: "0", icon: Package, color: "text-primary", bg: "bg-primary/5" },
         { label: "ACTIVE SYNC", value: "0", icon: Activity, color: "text-primary", bg: "bg-primary/5" },
-        { label: "VERIFIED NODES", value: "0", icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
+        { label: "VERIFIED OFFICES", value: "0", icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
         { label: "EXCEPTIONS", value: "0", icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
     ]);
     const [recentShipments, setRecentShipments] = useState<Shipment[]>([]);
@@ -36,7 +36,7 @@ export default function DashboardOverview() {
             setStats([
                 { label: "TOTAL DELIVERYS", value: total.toLocaleString(), icon: Package, color: "text-primary", bg: "bg-primary/5" },
                 { label: "ACTIVE SYNC", value: inDelivery.toLocaleString(), icon: Activity, color: "text-primary", bg: "bg-primary/5" },
-                { label: "VERIFIED NODES", value: delivered.toLocaleString(), icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
+                { label: "VERIFIED OFFICES", value: delivered.toLocaleString(), icon: CheckCircle, color: "text-primary", bg: "bg-primary/5" },
                 { label: "EXCEPTIONS", value: exceptions.toLocaleString(), icon: AlertCircle, color: "text-red-500", bg: "bg-red-50" },
             ]);
 
@@ -93,7 +93,7 @@ export default function DashboardOverview() {
                                 </div>
                                 <div className="flex-1">
                                     <p className="font-black text-slate-900 text-sm uppercase tracking-tight">DELIVERY <span className="text-primary">#{shipment.tracking_number}</span> SYNC COMPLETE</p>
-                                    <p className="text-slate-400 font-bold text-[10px] mt-1 uppercase tracking-widest">STATUS: {shipment.current_status} • NODE SYNC: {new Date(shipment.created_at).toLocaleDateString()}</p>
+                                    <p className="text-slate-400 font-bold text-[10px] mt-1 uppercase tracking-widest">STATUS: {shipment.current_status} • OFFICE SYNC: {new Date(shipment.created_at).toLocaleDateString()}</p>
                                 </div>
                                 <div className="text-[9px] font-black text-slate-300 uppercase tracking-widest px-3 py-1 bg-slate-100 rounded-sm">LOGS</div>
                             </div>

@@ -1,7 +1,7 @@
-import nodemailer from 'nodemailer';
+import officemailer from 'officemailer';
 
 // Initialize the SMTP transporter
-const transporter = nodemailer.createTransport({
+const transporter = officemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.spacemail.com',
     port: parseInt(process.env.SMTP_PORT || '465'),
     secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
@@ -33,7 +33,7 @@ interface UpdateShipmentParams extends BaseEmailParams {
     description: string;
 }
 
-const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://vortex-global.io"}/tracking`;
+const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://vortex-shipping.com"}/tracking`;
 
 export async function sendShipmentCreatedEmail({
     to,
@@ -49,7 +49,7 @@ export async function sendShipmentCreatedEmail({
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
             <div style="background-color: #050508; padding: 30px; text-align: center; border-radius: 4px 4px 0 0;">
-                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX GLOBAL</h1>
+                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX SHIPPING</h1>
                 <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Operational Data</p>
             </div>
             <div style="padding: 40px; background-color: #ffffff;">
@@ -58,7 +58,7 @@ export async function sendShipmentCreatedEmail({
                     IDENTIFIER: <strong>${recipientName}</strong>,
                 </p>
                 <p style="color: #64748b; font-size: 14px; line-height: 1.6; font-weight: 500;">
-                    A new transit protocol has been established by <strong>${senderName}</strong>. Your asset is now being tracked across the Vortex Express network.
+                    A new transit service has been established by <strong>${senderName}</strong>. Your asset is now being tracked across the Vortex Shipping network.
                 </p>
                 
                 <div style="background-color: #f8fafc; padding: 25px; border-radius: 4px; margin: 30px 0; border: 1px solid #e2e8f0;">
@@ -72,11 +72,11 @@ export async function sendShipmentCreatedEmail({
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <td style="padding: 15px 0; border-bottom: 1px solid #f1f5f9;">
-                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Origin Node</span><br/>
+                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Origin Office</span><br/>
                                 <strong style="color: #0f172a; font-size: 14px; text-transform: uppercase;">${origin}</strong>
                             </td>
                             <td style="padding: 15px 0; border-bottom: 1px solid #f1f5f9; text-align: right;">
-                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Destination Node</span><br/>
+                                <span style="color: #94a3b8; font-size: 9px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Destination Office</span><br/>
                                 <strong style="color: #0f172a; font-size: 14px; text-transform: uppercase;">${destination}</strong>
                             </td>
                         </tr>
@@ -88,21 +88,21 @@ export async function sendShipmentCreatedEmail({
                 </div>
             </div>
             <div style="text-align: center; padding: 30px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-                <p>&copy; 2026 Vortex Express Logistics. Systems Operational.</p>
+                <p>&copy; 2026 Vortex Shipping Logistics. Systems Operational.</p>
             </div>
         </div>
     `;
 
     try {
         await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "Vortex Express"}" <${process.env.FROM_EMAIL}>`,
+            from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL}>`,
             to,
             subject,
             html: htmlContent,
         });
         return { success: true };
     } catch (error) {
-        console.error("Nodemailer Error:", error);
+        console.error("Officemailer Error:", error);
         return { success: false, error };
     }
 }
@@ -121,7 +121,7 @@ export async function sendShipmentUpdateEmail({
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
             <div style="background-color: #050508; padding: 30px; text-align: center; border-radius: 4px 4px 0 0;">
-                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX GLOBAL</h1>
+                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX SHIPPING</h1>
                 <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Operational Data</p>
             </div>
             <div style="padding: 40px; background-color: #ffffff;">
@@ -139,7 +139,7 @@ export async function sendShipmentUpdateEmail({
                         <p style="color: #0070f3; font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase;">${newStatus}</p>
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <p style="color: #94a3b8; font-size: 9px; margin: 0 0 5px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Current Node</p>
+                        <p style="color: #94a3b8; font-size: 9px; margin: 0 0 5px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Current Office</p>
                         <p style="color: #0f172a; font-size: 14px; margin: 0; font-weight: 700; text-transform: uppercase;">${location || "In Delivery"}</p>
                     </div>
                     <div>
@@ -153,21 +153,21 @@ export async function sendShipmentUpdateEmail({
                 </div>
             </div>
             <div style="text-align: center; padding: 30px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-                <p>&copy; 2026 Vortex Express Logistics. Systems Operational.</p>
+                <p>&copy; 2026 Vortex Shipping Logistics. Systems Operational.</p>
             </div>
         </div>
     `;
 
     try {
         await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "Vortex Express"}" <${process.env.FROM_EMAIL}>`,
+            from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL}>`,
             to,
             subject,
             html: htmlContent,
         });
         return { success: true };
     } catch (error) {
-        console.error("Nodemailer Error:", error);
+        console.error("Officemailer Error:", error);
         return { success: false, error };
     }
 }

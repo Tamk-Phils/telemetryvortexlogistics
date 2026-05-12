@@ -44,11 +44,11 @@ export default function SettingsPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">PLATFORM NOMENCLATURE</label>
-                                    <input type="text" defaultValue="VORTEX GLOBAL" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
+                                    <input type="text" defaultValue="VORTEX SHIPPING" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
                                 </div>
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">COMMAND UPLINK EMAIL</label>
-                                    <input type="email" defaultValue="OPS@VORTEX-GLOBAL.IO" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
+                                    <input type="email" defaultValue="OPS@VORTEX-SHIPPING.COM" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
                                 </div>
                             </div>
                         </section>
@@ -61,7 +61,7 @@ export default function SettingsPage() {
                             </h3>
                             <div className="space-y-6">
                                 {[
-                                    { label: "EMAIL DATA UPDATES", desc: "Notify nodes instantly when transit protocol changes.", enabled: true },
+                                    { label: "EMAIL DATA UPDATES", desc: "Notify offices instantly when transit service changes.", enabled: true },
                                     { label: "SMS EMERGENCY ALERTS", desc: "Critical alerts for delayed or held asset packets.", enabled: false },
                                     { label: "WEBHOOK SYNC", desc: "Push data to external institutional ERP systems.", enabled: true },
                                 ].map((opt, i) => (

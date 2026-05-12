@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Globe, Target, ShieldCheck, Zap, Cpu, Radar, Database, Network, Users, Award, Landmark } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutPage() {
     return (
@@ -16,14 +17,14 @@ export default function AboutPage() {
                         className="max-w-4xl"
                     >
                         <div className="inline-flex items-center gap-3 bg-white text-primary px-4 py-2 rounded-full border border-slate-200 mb-10 shadow-sm">
-                            <span className="text-xs font-bold uppercase tracking-wider">About Vortex Express</span>
+                            <span className="text-xs font-bold uppercase tracking-wider">About Vortex Shipping</span>
                         </div>
                         <h1 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter mb-10 leading-[1.1]">
                             Simplifying Global <br />
                             <span className="text-primary italic">Shipping.</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-3xl">
-                            Since 2026, Vortex Express has been on a mission to make world trade accessible to everyone. We combine advanced technology with a human touch to deliver your packages safely and on time.
+                            Since 2026, Vortex Shipping has been on a mission to make world trade accessible to everyone. We combine advanced technology with a human touch to deliver your packages safely and on time.
                         </p>
                     </motion.div>
                 </div>
@@ -48,7 +49,7 @@ export default function AboutPage() {
                         <div className="space-y-6">
                             <h2 className="text-4xl font-black text-slate-900 tracking-tight">Our Story</h2>
                             <p className="text-slate-500 text-lg leading-relaxed font-medium">
-                                Vortex Express started with a simple idea: shipping shouldn't be complicated. What began as a small regional delivery service has grown into a global network that connects businesses and people across continents.
+                                Vortex Shipping started with a simple idea: shipping shouldn't be complicated. What began as a small regional delivery service has grown into a global network that connects businesses and people across continents.
                             </p>
                             <p className="text-slate-500 text-lg leading-relaxed font-medium">
                                 We believe that behind every package is a story—a gift for a loved one, a critical part for a factory, or a new product for a growing business. That's why we treat every delivery with the utmost care and precision.

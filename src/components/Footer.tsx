@@ -84,15 +84,15 @@ export default function Footer() {
                                     <MapPin size={20} />
                                 </div>
                                 <p className="text-slate-500 text-sm font-medium leading-relaxed">
-                                    Level 88, Cyber District,<br />
-                                    Singapore 018989
+                                    123 Logistics Way, Dallas,<br />
+                                    TX 75201, USA
                                 </p>
                             </div>
                             <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary shadow-sm shrink-0">
                                     <Phone size={20} />
                                 </div>
-                                <p className="text-slate-900 text-sm font-black">+1 (800) VORTEX-LOG</p>
+                                <p className="text-slate-900 text-sm font-black">+1 (800) VORTEX-NOW</p>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="text-center lg:text-right">
-                        <p className="text-slate-400 font-bold text-xs mb-4">© 2026 Vortex Express. All rights reserved.</p>
+                        <p className="text-slate-400 font-bold text-xs mb-4">© 2026 Vortex Shipping. All rights reserved.</p>
                         <div className="flex gap-8 justify-center lg:justify-end">
                             <Link href="/privacy" className="text-xs font-bold text-slate-400 hover:text-primary transition-colors">Privacy Policy</Link>
                             <Link href="/terms" className="text-xs font-bold text-slate-400 hover:text-primary transition-colors">Terms of Service</Link>

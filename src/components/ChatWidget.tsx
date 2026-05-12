@@ -104,7 +104,7 @@ export default function ChatWidget() {
                 setRoomId(data.id);
                 localStorage.setItem(`vortex_chat_room_${user.id}`, data.id);
                 // Send initial greeting
-                await sendMessage(data.id, "Welcome to the Vortex Support Uplink. How can we assist with your telemetry today?", 'admin');
+                await sendMessage(data.id, "Welcome to Vortex Shipping Support. How can we help you with your package today?", 'admin');
             }
         } catch (err) {
             console.error("Error creating chat room:", err);
@@ -167,10 +167,10 @@ export default function ChatWidget() {
                                     <Headset size={20} className="text-primary" />
                                 </div>
                                 <div>
-                                    <p className="font-black text-xs uppercase tracking-widest">Support Uplink</p>
+                                    <p className="font-black text-xs uppercase tracking-widest">Customer Support</p>
                                     <div className="flex items-center gap-1.5">
                                         <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,242,255,0.8)]" />
-                                        <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Agents Operational</p>
+                                        <p className="text-[9px] font-black text-white/40 uppercase tracking-widest">Agents Online</p>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@ export default function ChatWidget() {
                         >
                             <input
                                 type="text"
-                                placeholder="TRANSMIT MESSAGE..."
+                                placeholder="TYPE YOUR MESSAGE..."
                                 className="flex-1 bg-slate-50 border border-slate-200 rounded-sm py-3 px-4 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-300 outline-none"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}

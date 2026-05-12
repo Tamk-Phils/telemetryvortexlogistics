@@ -41,7 +41,7 @@ export default function Logo({ className = "w-10 h-10" }: { className?: string }
                     strokeLinecap="round" 
                 />
                 
-                {/* Precision Center Node */}
+                {/* Precision Center Office */}
                 <motion.circle 
                     cx="50" cy="50" r="4" 
                     fill="#0070F3"

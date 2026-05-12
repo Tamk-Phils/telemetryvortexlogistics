@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function UserManagement() {
     const [users, setUsers] = useState([
-        { id: 1, name: "COMMAND ADMIN", email: "ADMIN@VORTEX-GLOBAL.IO", role: "SUPER USER", status: "ACTIVE", lastLogin: "2 MINS AGO" },
+        { id: 1, name: "COMMAND ADMIN", email: "ADMIN@VORTEX-SHIPPING.COM", role: "SUPER USER", status: "ACTIVE", lastLogin: "2 MINS AGO" },
         { id: 2, name: "SARAH JENKINS", email: "S.JENKINS@SWIFT.IO", role: "OPERATOR", status: "ACTIVE", lastLogin: "1 HOUR AGO" },
         { id: 3, name: "ROBERT CHEN", email: "R.CHEN@GLOBALPORT.IO", role: "MANAGER", status: "OFFLINE", lastLogin: "3 DAYS AGO" },
         { id: 4, name: "MICHAEL TORRES", email: "M.TORRES@APEX.IO", role: "OPERATOR", status: "ACTIVE", lastLogin: "5 HOURS AGO" },
@@ -18,18 +18,18 @@ export default function UserManagement() {
                 <div>
                     <div className="flex items-center gap-3 mb-4">
                         <Radar size={20} className="text-primary animate-pulse" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Node Personnel</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Office Personnel</span>
                     </div>
                     <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">USER <br/><span className="text-primary italic">DIRECTORY.</span></h1>
                 </div>
                 <button className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest flex items-center gap-4 shadow-xl transition-all">
-                    <UserPlus size={20} /> AUTHORIZE NEW NODE
+                    <UserPlus size={20} /> AUTHORIZE NEW OFFICE
                 </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
-                    { label: "PLANETARY NODES", val: "1,280", icon: Users, color: "text-primary", bg: "bg-primary/5" },
+                    { label: "PLANETARY OFFICES", val: "1,280", icon: Users, color: "text-primary", bg: "bg-primary/5" },
                     { label: "ACTIVE SYNC", val: "42", icon: Activity, color: "text-primary", bg: "bg-primary/5" },
                     { label: "PENDING UPLINK", val: "15", icon: Fingerprint, color: "text-primary", bg: "bg-primary/5" },
                 ].map((stat, i) => (
@@ -61,7 +61,7 @@ export default function UserManagement() {
                             <Filter size={18} /> FILTER SYSTEMS
                         </button>
                         <div className="h-6 w-[1px] bg-slate-200" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SHOWING 4 / 1,280 AUTHORIZED NODES</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SHOWING 4 / 1,280 AUTHORIZED OFFICES</span>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@ export default function UserManagement() {
                     <table className="w-full text-left">
                         <thead>
                             <tr className="bg-slate-900 text-white">
-                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">NODE IDENTITY</th>
+                                <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">OFFICE IDENTITY</th>
                                 <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">SYSTEM ROLE</th>
                                 <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">SYNC STATUS</th>
                                 <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">LAST UPLINK</th>

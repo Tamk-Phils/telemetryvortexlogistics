@@ -8,7 +8,7 @@ export default function AlertsManager() {
     const [alerts, setAlerts] = useState([
         { id: 1, type: "Warning", title: "GEOMAGNETIC INTERFERENCE: NORTH ATLANTIC HUB", impact: "HIGH", status: "PUBLISHED" },
         { id: 2, type: "Info", title: "SINGAPORE PORT SYNC UNDERWAY", impact: "LOW", status: "PUBLISHED" },
-        { id: 3, type: "Success", title: "NEW DATA NODE: NAIROBI", impact: "POSITIVE", status: "PUBLISHED" },
+        { id: 3, type: "Success", title: "NEW DATA OFFICE: NAIROBI", impact: "POSITIVE", status: "PUBLISHED" },
     ]);
 
     return (
@@ -17,7 +17,7 @@ export default function AlertsManager() {
                 <div>
                     <div className="flex items-center gap-3 mb-4">
                         <Radar size={20} className="text-primary animate-pulse" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Node Communication</span>
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Office Communication</span>
                     </div>
                     <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">SERVICE <br/><span className="text-primary italic">DISPATCH.</span></h1>
                 </div>
@@ -74,7 +74,7 @@ export default function AlertsManager() {
                         <Radio className="text-primary mb-10" size={48} />
                         <h3 className="text-xl font-black mb-4 uppercase tracking-tighter">EMERGENCY UPLINK</h3>
                         <p className="text-white/40 font-bold mb-10 leading-relaxed text-xs uppercase tracking-tight">
-                            Simultaneously broadcast critical variance to all synchronized nodes and operator terminals.
+                            Simultaneously broadcast critical variance to all syncd offices and operator terminals.
                         </p>
                         
                         <div className="space-y-6">
@@ -93,7 +93,7 @@ export default function AlertsManager() {
                     <div className="bg-white p-12 rounded-sm border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full group-hover:scale-150 transition-transform duration-700" />
                         <h4 className="text-[10px] font-black text-slate-900 mb-2 relative z-10 uppercase tracking-[0.4em]">BOARD DATA</h4>
-                        <p className="text-slate-400 font-bold text-[10px] mb-8 relative z-10 uppercase tracking-widest">Global Node Interaction Metrics</p>
+                        <p className="text-slate-400 font-bold text-[10px] mb-8 relative z-10 uppercase tracking-widest">Global Office Interaction Metrics</p>
                         
                         <div className="space-y-6">
                              <div className="flex justify-between items-end">

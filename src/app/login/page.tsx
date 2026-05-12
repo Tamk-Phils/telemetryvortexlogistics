@@ -52,14 +52,14 @@ export default function LoginPage() {
                         <h2 className="text-2xl font-black uppercase tracking-tighter leading-[0.9]">ESTABLISH <br/><span className="text-primary">UPLINK</span></h2>
                     </div>
                     <div className="relative z-10 pt-10 border-t border-white/10">
-                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX GLOBAL</p>
+                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">VORTEX SHIPPING</p>
                     </div>
                 </div>
 
                 <div className="md:w-2/3 p-10 sm:p-16">
                     <div className="mb-12">
                         <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter">SECURE AUTH</h1>
-                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Enter your protocol credentials to access the global telemetry network.</p>
+                        <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest leading-relaxed">Enter your service credentials to access the global data network.</p>
                     </div>
 
                     {error && (

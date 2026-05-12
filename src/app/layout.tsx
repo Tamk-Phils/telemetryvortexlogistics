@@ -10,34 +10,34 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Vortex Express | Fast & Reliable Global Shipping",
-    template: "%s | Vortex Express"
+    default: "Vortex Shipping | Fast & Easy US Delivery",
+    template: "%s | Vortex Shipping"
   },
-  description: "Next-generation real-time shipment tracking and global logistics solutions. Move your world with Vortex Express.",
-  keywords: ["logistics tracking", "vortex logistics", "shipping company", "global delivery", "package tracking", "fast shipping"],
+  description: "The simplest way to ship and track your packages across America. Reliable delivery you can count on with Vortex Shipping.",
+  keywords: ["package tracking", "vortex shipping", "shipping company", "us delivery", "send a box", "fast shipping"],
   authors: [{ name: "Vortex Team" }],
-  creator: "Vortex Express",
-  publisher: "Vortex Express Inc",
+  creator: "Vortex Shipping",
+  publisher: "Vortex Shipping Inc",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://vortex-logistics.com"),
+  metadataBase: new URL("https://vortex-shipping.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Vortex Express | Fast & Reliable Global Shipping",
-    description: "The simplest and most reliable way to ship and track your packages worldwide. Move your world with Vortex Express.",
-    url: "https://vortex-logistics.com",
-    siteName: "Vortex Express",
+    title: "Vortex Shipping | Fast & Easy US Delivery",
+    description: "The simplest and most reliable way to ship and track your packages across America. Move your world with Vortex Shipping.",
+    url: "https://vortex-shipping.com",
+    siteName: "Vortex Shipping",
     images: [
       {
         url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
         width: 1200,
         height: 630,
-        alt: "Vortex Express Center",
+        alt: "Vortex Shipping Center",
       },
     ],
     locale: "en_US",
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vortex Express | Fast & Reliable Global Shipping",
-    description: "The simplest and most reliable way to ship and track your packages worldwide. Move your world with Vortex Express.",
+    title: "Vortex Shipping | Fast & Easy US Delivery",
+    description: "The simplest and most reliable way to ship and track your packages across America. Move your world with Vortex Shipping.",
     images: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200"],
   },
   robots: {
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactOffice;
 }>) {
   return (
     <html lang="en">

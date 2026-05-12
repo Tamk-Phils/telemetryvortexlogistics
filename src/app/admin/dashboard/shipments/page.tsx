@@ -178,7 +178,7 @@ export default function ShipmentsList() {
             if (editingShipment.recipient_email) {
                 await notifyShipmentUpdate({
                     to: editingShipment.recipient_email,
-                    subject: `Vortex Express: Delivery Update ${editingShipment.tracking_number}`,
+                    subject: `Vortex Shipping: Delivery Update ${editingShipment.tracking_number}`,
                     trackingNumber: editingShipment.tracking_number,
                     recipientName: editingShipment.recipient_name || 'Operator',
                     newStatus: newUpdate.status,
@@ -191,7 +191,7 @@ export default function ShipmentsList() {
             setEditingShipment(null);
         } catch (err) {
             console.error(err);
-            alert("Failed to update transit telemetry.");
+            alert("Failed to update transit data.");
         }
     };
 
@@ -241,7 +241,7 @@ export default function ShipmentsList() {
                     <div className="relative w-full max-w-xl">
                         <input
                             type="text"
-                            placeholder="SEARCH BY SIGNATURE OR NODE..."
+                            placeholder="SEARCH BY SIGNATURE OR OFFICE..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full bg-white border border-slate-200 rounded-sm py-5 px-8 pl-14 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-300 outline-none"
@@ -270,7 +270,7 @@ export default function ShipmentsList() {
                                 <thead>
                                     <tr className="bg-slate-900 text-white">
                                         <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">DELIVERY SIGNATURE</th>
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden md:table-cell">NODE TOPOLOGY</th>
+                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden md:table-cell">OFFICE TOPOLOGY</th>
                                         <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">OPERATIONAL STATUS</th>
                                         <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] text-right">COMMANDS</th>
                                     </tr>
