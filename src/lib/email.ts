@@ -1,18 +1,19 @@
 import nodemailer from 'nodemailer';
 
 function getTransporter() {
-    const port = parseInt(process.env.SMTP_PORT || '587');
+    const host = process.env.SMTP_HOST || 'mail.spacemail.com';
+    const port = parseInt(process.env.SMTP_PORT || '465');
     return nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.spacemail.com',
+        host: host,
         port: port,
         secure: port === 465,
         auth: {
             user: process.env.SMTP_USER,
             pass: process.env.SMTP_PASS,
         },
-        connectionTimeout: 10000,
-        greetingTimeout: 10000,
-        socketTimeout: 10000,
+        connectionTimeout: 15000,
+        greetingTimeout: 15000,
+        socketTimeout: 15000,
         tls: {
             rejectUnauthorized: false
         }
@@ -101,28 +102,34 @@ export async function sendShipmentCreatedEmail({
         </div>
     `;
 
-    const recipientList = [
+    const recipientList = Array.from(new Set([
         to,
         adminEmail,
         process.env.FROM_EMAIL,
         process.env.SMTP_USER
-    ].filter(Boolean).map(e => (e as string).trim());
+    ].filter(Boolean).map(e => (e as string).trim())));
 
-    const uniqueTo = Array.from(new Set(recipientList)).join(", ");
+    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`;
 
-    try {
-        await getTransporter().sendMail({
-            from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`,
-            to: uniqueTo,
-            subject,
-            html: htmlContent,
-        });
-        return { success: true };
-    } catch (error) {
-        console.error("Nodemailer Error:", error);
-        console.error("Nodemailer Error:", error);
-        return { success: false, error };
+    let sentCount = 0;
+    let lastError: any = null;
+    for (const recipient of recipientList) {
+        try {
+            await getTransporter().sendMail({
+                from: fromAddress,
+                to: recipient,
+                subject,
+                html: htmlContent,
+            });
+            sentCount++;
+            console.log(`Email successfully dispatched to: ${recipient}`);
+        } catch (error) {
+            lastError = error;
+            console.error(`Nodemailer dispatch error for ${recipient}:`, error);
+        }
     }
+
+    return { success: sentCount > 0, error: sentCount === 0 ? lastError : undefined };
 }
 
 export async function sendShipmentUpdateEmail({
@@ -176,16 +183,31 @@ export async function sendShipmentUpdateEmail({
         </div>
     `;
 
-    try {
-        await getTransporter().sendMail({
-            from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL}>`,
-            to,
-            subject,
-            html: htmlContent,
-        });
-        return { success: true };
-    } catch (error) {
-        console.error("Nodemailer Error:", error);
-        return { success: false, error };
+    const recipientList = Array.from(new Set([
+        to,
+        process.env.FROM_EMAIL,
+        process.env.SMTP_USER
+    ].filter(Boolean).map(e => (e as string).trim())));
+
+    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`;
+
+    let sentCount = 0;
+    let lastError: any = null;
+    for (const recipient of recipientList) {
+        try {
+            await getTransporter().sendMail({
+                from: fromAddress,
+                to: recipient,
+                subject,
+                html: htmlContent,
+            });
+            sentCount++;
+            console.log(`Update email successfully dispatched to: ${recipient}`);
+        } catch (error) {
+            lastError = error;
+            console.error(`Nodemailer update dispatch error for ${recipient}:`, error);
+        }
     }
+
+    return { success: sentCount > 0, error: sentCount === 0 ? lastError : undefined };
 }
