@@ -71,9 +71,9 @@ export default function Home() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-7 space-y-8 bg-white/90 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none p-6 md:p-10 lg:p-0 rounded-3xl border border-white/40 lg:border-none shadow-xl lg:shadow-none"
+              className="lg:col-span-7 space-y-8"
             >
-              <div className="inline-flex items-center gap-3 bg-primary/10 lg:bg-primary/5 px-4 py-2 rounded-full border border-primary/20 lg:border-primary/10">
+              <div className="inline-flex items-center gap-3 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-xs font-bold text-primary uppercase tracking-wider">Fast Shipping Across America</span>
               </div>
@@ -83,7 +83,7 @@ export default function Home() {
                 With <span className="text-primary">Vortex.</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-slate-700 lg:text-slate-500 leading-relaxed max-w-2xl font-bold lg:font-medium">
+              <p className="text-lg md:text-xl text-slate-800 lg:text-slate-500 leading-relaxed max-w-2xl font-bold lg:font-medium">
                 The easiest way to send and track your boxes. Whether it's across town or coast-to-coast, we get your packages there safe and on time.
               </p>
 

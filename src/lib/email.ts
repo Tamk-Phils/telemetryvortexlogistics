@@ -1,18 +1,23 @@
 import nodemailer from 'nodemailer';
 
-// Initialize the SMTP transporter
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.spacemail.com',
-    port: parseInt(process.env.SMTP_PORT || '465'),
-    secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
-});
+function getTransporter() {
+    const port = parseInt(process.env.SMTP_PORT || '587');
+    return nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.spacemail.com',
+        port: port,
+        secure: port === 465,
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+        },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 10000,
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+}
 
 interface BaseEmailParams {
     to: string;
@@ -106,7 +111,7 @@ export async function sendShipmentCreatedEmail({
     const uniqueTo = Array.from(new Set(recipientList)).join(", ");
 
     try {
-        await transporter.sendMail({
+        await getTransporter().sendMail({
             from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`,
             to: uniqueTo,
             subject,
@@ -172,7 +177,7 @@ export async function sendShipmentUpdateEmail({
     `;
 
     try {
-        await transporter.sendMail({
+        await getTransporter().sendMail({
             from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL}>`,
             to,
             subject,
