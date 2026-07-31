@@ -53,7 +53,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 lg:hidden pointer-events-none overflow-hidden">
           <Image 
             src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
-            alt="Vortex Background" 
+            alt="SwiftLink Background" 
             fill 
             className="object-cover opacity-100"
             priority
@@ -80,7 +80,7 @@ export default function Home() {
               
               <h1 className="text-5xl md:text-8xl font-black leading-[1.1] tracking-tighter text-slate-900">
                 Ship Your Stuff <br />
-                With <span className="text-primary">Vortex.</span>
+                With <span className="text-primary">SwiftLink.</span>
               </h1>
               
               <p className="text-lg md:text-xl text-slate-800 lg:text-slate-500 leading-relaxed max-w-2xl font-bold lg:font-medium">
@@ -127,7 +127,7 @@ export default function Home() {
                >
                   <Image 
                     src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
-                    alt="Vortex Warehouse" 
+                    alt="SwiftLink Warehouse" 
                     fill 
                     className="object-cover group-hover:scale-105 transition-transform duration-700" 
                   />

@@ -41,7 +41,7 @@ export default function TrackingSearch() {
             if (sbError) {
                 if (sbError.code === 'PGRST116') {
                     // Not found, try fallback for demo
-                    const saved = localStorage.getItem("vortex_shipments");
+                    const saved = localStorage.getItem("swiftlink_shipments");
                     const localShipments: Shipment[] = saved ? JSON.parse(saved) : [];
                     const found = localShipments.find(s =>
                         s.tracking_number.toLowerCase() === trackingNumber.trim().toLowerCase() && !s.is_deleted

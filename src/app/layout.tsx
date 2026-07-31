@@ -17,14 +17,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Vortex Shipping | Global Freight & Package Tracking",
-    template: "%s | Vortex Shipping"
+    default: "SwiftLink Shipping | Global Freight & Package Tracking",
+    template: "%s | SwiftLink Shipping"
   },
-  description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with Vortex Shipping.",
-  keywords: ["package tracking", "vortex shipping", "swiftlink shipping", "shipping company", "express delivery", "global freight", "cargo tracking"],
-  authors: [{ name: "Vortex Shipping Team" }],
-  creator: "Vortex Shipping",
-  publisher: "Vortex Shipping Logistics",
+  description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with SwiftLink Shipping.",
+  keywords: ["package tracking", "swiftlink shipping", "swiftlink", "shipping company", "express delivery", "global freight", "cargo tracking"],
+  authors: [{ name: "SwiftLink Shipping Team" }],
+  creator: "SwiftLink Shipping",
+  publisher: "SwiftLink Shipping Logistics",
   formatDetection: {
     email: false,
     address: false,
@@ -35,16 +35,16 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Vortex Shipping | Global Freight & Package Tracking",
-    description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with Vortex Shipping.",
+    title: "SwiftLink Shipping | Global Freight & Package Tracking",
+    description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with SwiftLink Shipping.",
     url: "https://swiftlinkshipping.com",
-    siteName: "Vortex Shipping Logistics",
+    siteName: "SwiftLink Shipping Logistics",
     images: [
       {
         url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
         width: 1200,
         height: 630,
-        alt: "Vortex Shipping Logistics",
+        alt: "SwiftLink Shipping Logistics",
       },
     ],
     locale: "en_US",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vortex Shipping | Global Freight & Package Tracking",
-    description: "Global logistics, express air transit, ocean freight, and real-time package tracking with Vortex Shipping.",
+    title: "SwiftLink Shipping | Global Freight & Package Tracking",
+    description: "Global logistics, express air transit, ocean freight, and real-time package tracking with SwiftLink Shipping.",
     images: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200"],
   },
   robots: {
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LogisticsService",
-  "name": "Vortex Shipping Logistics",
+  "name": "SwiftLink Shipping Logistics",
   "url": "https://swiftlinkshipping.com",
   "logo": "https://swiftlinkshipping.com/favicon.ico",
   "description": "Global freight forwarding, air transit, and real-time package tracking portal.",

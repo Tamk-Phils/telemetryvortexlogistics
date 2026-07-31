@@ -38,7 +38,7 @@ export default function Header() {
                                 <Truck size={24} />
                             </div>
                             <div className="flex flex-col">
-                                <span className={`text-xl font-black tracking-tighter leading-none text-slate-900`}>Vortex</span>
+                                <span className={`text-xl font-black tracking-tighter leading-none text-slate-900`}>SwiftLink</span>
                                 <span className="text-[10px] font-bold tracking-[0.2em] text-primary uppercase leading-none mt-1">Shipping</span>
                             </div>
                         </Link>

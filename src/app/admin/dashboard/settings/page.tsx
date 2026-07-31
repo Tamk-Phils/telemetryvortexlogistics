@@ -44,11 +44,11 @@ export default function SettingsPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">PLATFORM NOMENCLATURE</label>
-                                    <input type="text" defaultValue="VORTEX SHIPPING" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
+                                    <input type="text" defaultValue="SWIFTLINK SHIPPING" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
                                 </div>
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">COMMAND UPLINK EMAIL</label>
-                                    <input type="email" defaultValue="OPS@VORTEX-SHIPPING.COM" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
+                                    <input type="email" defaultValue="SUPPORT@SWIFTLINKSHIPPING.COM" className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 font-black text-[10px] uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all outline-none" />
                                 </div>
                             </div>
                         </section>
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                                     <button className="text-primary font-black text-[9px] uppercase tracking-widest hover:text-white transition-colors">TERMINATE KEY</button>
                                 </div>
                                 <code className="block bg-black/40 p-6 rounded-sm font-mono text-xs break-all text-primary/80 border border-white/5 relative z-10">
-                                    VTX_LIVE_2026_9481K_X92KJA_02JK_LMS0293
+                                    SWL_LIVE_2026_9481K_X92KJA_02JK_LMS0293
                                 </code>
                             </div>
                         </section>

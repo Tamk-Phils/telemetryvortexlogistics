@@ -17,7 +17,7 @@ export default function Footer() {
                                 <Truck size={24} />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-xl font-black text-slate-900 tracking-tighter leading-none">Vortex</span>
+                                <span className="text-xl font-black text-slate-900 tracking-tighter leading-none">SwiftLink</span>
                                 <span className="text-[10px] font-bold tracking-[0.2em] text-primary uppercase leading-none mt-1">Shipping</span>
                             </div>
                         </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="text-center lg:text-right">
-                        <p className="text-slate-400 font-bold text-xs mb-4">© 2026 Vortex Shipping. All rights reserved.</p>
+                        <p className="text-slate-400 font-bold text-xs mb-4">© 2026 SwiftLink Shipping. All rights reserved.</p>
                         <div className="flex gap-8 justify-center lg:justify-end">
                             <Link href="/privacy" className="text-xs font-bold text-slate-400 hover:text-primary transition-colors">Privacy Policy</Link>
                             <Link href="/terms" className="text-xs font-bold text-slate-400 hover:text-primary transition-colors">Terms of Service</Link>

@@ -104,7 +104,7 @@ export default function ChatWidget() {
                 setRoomId(data.id);
                 localStorage.setItem(`vortex_chat_room_${user.id}`, data.id);
                 // Send initial greeting
-                await sendMessage(data.id, "Welcome to Vortex Shipping Support. How can we help you with your package today?", 'admin');
+                await sendMessage(data.id, "Welcome to SwiftLink Shipping Support. How can we help you with your package today?", 'admin');
             }
         } catch (err) {
             console.error("Error creating chat room:", err);

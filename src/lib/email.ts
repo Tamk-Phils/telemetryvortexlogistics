@@ -44,7 +44,7 @@ interface UpdateShipmentParams extends BaseEmailParams {
     description: string;
 }
 
-const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://vortex-shipping.com"}/tracking`;
+const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://swiftlinkshipping.com"}/tracking`;
 
 export async function sendShipmentCreatedEmail({
     to,
@@ -61,7 +61,7 @@ export async function sendShipmentCreatedEmail({
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
             <div style="background-color: #050508; padding: 30px; text-align: center; border-radius: 4px 4px 0 0;">
-                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX SHIPPING</h1>
+                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">SWIFTLINK SHIPPING</h1>
                 <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Operational Data</p>
             </div>
             <div style="padding: 40px; background-color: #ffffff;">
@@ -70,7 +70,7 @@ export async function sendShipmentCreatedEmail({
                     IDENTIFIER: <strong>${recipientName}</strong>,
                 </p>
                 <p style="color: #64748b; font-size: 14px; line-height: 1.6; font-weight: 500;">
-                    A new transit service has been established by <strong>${senderName}</strong>. Your asset is now being tracked across the Vortex Shipping network.
+                    A new transit service has been established by <strong>${senderName}</strong>. Your asset is now being tracked across the SwiftLink Shipping network.
                 </p>
                 
                 <div style="background-color: #f8fafc; padding: 25px; border-radius: 4px; margin: 30px 0; border: 1px solid #e2e8f0;">
@@ -104,7 +104,7 @@ export async function sendShipmentCreatedEmail({
     `;
 
     const textContent = `
-VORTEX SHIPPING - SHIPMENT REGISTRATION NOTICE
+SWIFTLINK SHIPPING - SHIPMENT REGISTRATION NOTICE
 
 Hello ${recipientName},
 
@@ -115,7 +115,7 @@ Destination: ${destination}
 
 Track your package online at: ${trackingLink}
 
-Thank you for choosing Vortex Shipping Logistics.
+Thank you for choosing SwiftLink Shipping Logistics.
 Support Email: support@swiftlinkshipping.com
 `;
 
@@ -126,7 +126,7 @@ Support Email: support@swiftlinkshipping.com
         process.env.SMTP_USER
     ].filter(Boolean).map(e => (e as string).trim())));
 
-    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
+    const fromAddress = `"${process.env.FROM_NAME || "SwiftLink Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
     const replyToAddress = process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com";
 
     let sentCount = 0;
@@ -141,7 +141,7 @@ Support Email: support@swiftlinkshipping.com
                 text: textContent,
                 html: htmlContent,
                 headers: {
-                    'X-Mailer': 'SwiftLink-Shipping-Vortex/1.0',
+                    'X-Mailer': 'SwiftLink-Shipping/1.0',
                     'X-Priority': '1 (Highest)',
                     'Priority': 'urgent',
                     'Importance': 'high',
@@ -173,7 +173,7 @@ export async function sendShipmentUpdateEmail({
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
             <div style="background-color: #050508; padding: 30px; text-align: center; border-radius: 4px 4px 0 0;">
-                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX SHIPPING</h1>
+                <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">SWIFTLINK SHIPPING</h1>
                 <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;">Operational Data</p>
             </div>
             <div style="padding: 40px; background-color: #ffffff;">
@@ -209,7 +209,7 @@ export async function sendShipmentUpdateEmail({
     `;
 
     const textContent = `
-VORTEX SHIPPING - SHIPMENT UPDATE NOTICE
+SWIFTLINK SHIPPING - SHIPMENT UPDATE NOTICE
 
 Hello ${recipientName},
 
@@ -229,7 +229,7 @@ Support Email: support@swiftlinkshipping.com
         process.env.SMTP_USER
     ].filter(Boolean).map(e => (e as string).trim())));
 
-    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
+    const fromAddress = `"${process.env.FROM_NAME || "SwiftLink Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
     const replyToAddress = process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com";
 
     let sentCount = 0;
@@ -244,7 +244,7 @@ Support Email: support@swiftlinkshipping.com
                 text: textContent,
                 html: htmlContent,
                 headers: {
-                    'X-Mailer': 'SwiftLink-Shipping-Vortex/1.0',
+                    'X-Mailer': 'SwiftLink-Shipping/1.0',
                     'X-Priority': '1 (Highest)',
                     'Priority': 'urgent',
                     'Importance': 'high',
