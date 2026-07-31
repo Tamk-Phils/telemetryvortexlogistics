@@ -100,10 +100,24 @@ export async function sendShipmentCreatedEmail({
                 </div>
             </div>
             <div style="text-align: center; padding: 30px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-                <p>&copy; 2026 Vortex Shipping Logistics. Systems Operational.</p>
-            </div>
         </div>
     `;
+
+    const textContent = `
+VORTEX SHIPPING - SHIPMENT REGISTRATION NOTICE
+
+Hello ${recipientName},
+
+A new shipment has been registered by ${senderName}.
+Tracking Signature: ${trackingNumber}
+Origin: ${origin}
+Destination: ${destination}
+
+Track your package online at: ${trackingLink}
+
+Thank you for choosing Vortex Shipping Logistics.
+Support Email: support@swiftlinkshipping.com
+`;
 
     const recipientList = Array.from(new Set([
         to,
@@ -113,6 +127,7 @@ export async function sendShipmentCreatedEmail({
     ].filter(Boolean).map(e => (e as string).trim())));
 
     const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
+    const replyToAddress = process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com";
 
     let sentCount = 0;
     let lastError: any = null;
@@ -121,8 +136,17 @@ export async function sendShipmentCreatedEmail({
             await getTransporter().sendMail({
                 from: fromAddress,
                 to: recipient,
-                subject,
+                replyTo: replyToAddress,
+                subject: subject,
+                text: textContent,
                 html: htmlContent,
+                headers: {
+                    'X-Mailer': 'SwiftLink-Shipping-Vortex/1.0',
+                    'X-Priority': '1 (Highest)',
+                    'Priority': 'urgent',
+                    'Importance': 'high',
+                    'List-Unsubscribe': `<mailto:${replyToAddress}?subject=unsubscribe>`
+                }
             });
             sentCount++;
             console.log(`Email successfully dispatched to: ${recipient}`);
@@ -181,10 +205,23 @@ export async function sendShipmentUpdateEmail({
                 </div>
             </div>
             <div style="text-align: center; padding: 30px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-                <p>&copy; 2026 Vortex Shipping Logistics. Systems Operational.</p>
-            </div>
         </div>
     `;
+
+    const textContent = `
+VORTEX SHIPPING - SHIPMENT UPDATE NOTICE
+
+Hello ${recipientName},
+
+Shipment Signature: ${trackingNumber}
+New Status: ${newStatus}
+Current Office: ${location || 'In Delivery'}
+Details: ${description || 'No additional variance reported.'}
+
+Track package online at: ${trackingLink}
+
+Support Email: support@swiftlinkshipping.com
+`;
 
     const recipientList = Array.from(new Set([
         to,
@@ -193,6 +230,7 @@ export async function sendShipmentUpdateEmail({
     ].filter(Boolean).map(e => (e as string).trim())));
 
     const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
+    const replyToAddress = process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com";
 
     let sentCount = 0;
     let lastError: any = null;
@@ -201,8 +239,17 @@ export async function sendShipmentUpdateEmail({
             await getTransporter().sendMail({
                 from: fromAddress,
                 to: recipient,
-                subject,
+                replyTo: replyToAddress,
+                subject: subject,
+                text: textContent,
                 html: htmlContent,
+                headers: {
+                    'X-Mailer': 'SwiftLink-Shipping-Vortex/1.0',
+                    'X-Priority': '1 (Highest)',
+                    'Priority': 'urgent',
+                    'Importance': 'high',
+                    'List-Unsubscribe': `<mailto:${replyToAddress}?subject=unsubscribe>`
+                }
             });
             sentCount++;
             console.log(`Update email successfully dispatched to: ${recipient}`);

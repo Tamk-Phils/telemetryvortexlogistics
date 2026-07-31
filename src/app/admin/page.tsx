@@ -53,7 +53,7 @@ export default function AdminLogin() {
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-5 pl-12 focus:outline-none focus:border-primary transition-all font-semibold text-sm text-slate-900 outline-none"
-                                placeholder="Enter username (admin)"
+                                placeholder="Username"
                                 required
                             />
                             <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
@@ -68,7 +68,7 @@ export default function AdminLogin() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-5 pl-12 focus:outline-none focus:border-primary transition-all font-semibold text-sm text-slate-900 outline-none"
-                                placeholder="Enter password (admin123)"
+                                placeholder="Password"
                                 required
                             />
                             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
