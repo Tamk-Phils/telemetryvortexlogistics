@@ -39,27 +39,22 @@ export default function ContactPage() {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24 max-w-4xl mx-auto">
                     {[
                         { 
                             icon: MessageSquare, 
-                            title: "LIVE CHAT", 
-                            desc: "Talk to a real person right now through our website chat box.", 
-                            action: "OPEN CHAT", 
+                            title: "LIVE CHAT SUPPORT", 
+                            desc: "Talk to a customer support specialist right now through our official live chat assistant.", 
+                            action: "OPEN LIVE CHAT", 
+                            href: "/contact",
                             color: "text-primary" 
                         },
                         { 
                             icon: Mail, 
-                            title: "EMAIL US", 
-                            desc: "Send us a detailed message and we'll get back to you within 2 hours.", 
-                            action: "HELP@VORTEX.COM", 
-                            color: "text-primary" 
-                        },
-                        { 
-                            icon: Phone, 
-                            title: "CALL US", 
-                            desc: "Our friendly support team is available by phone 24/7.", 
-                            action: "+1 (800) VORTEX-NOW", 
+                            title: "EMAIL SUPPORT", 
+                            desc: "Send us a direct message for package inquiries, dispatch updates, and account support.", 
+                            action: "SUPPORT@SWIFTLINKSHIPPING.COM", 
+                            href: "mailto:support@swiftlinkshipping.com",
                             color: "text-primary" 
                         }
                     ].map((item, i) => (
@@ -75,9 +70,9 @@ export default function ContactPage() {
                             </div>
                             <h3 className="text-[10px] font-black text-slate-900 mb-4 uppercase tracking-[0.3em]">{item.title}</h3>
                             <p className="text-slate-500 font-bold text-sm mb-8 uppercase tracking-tight leading-relaxed">{item.desc}</p>
-                            <button className="text-primary font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-colors flex items-center gap-2">
+                            <a href={item.href} className="text-primary font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-colors flex items-center gap-2 break-all">
                                 {item.action} <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
-                            </button>
+                            </a>
                         </motion.div>
                     ))}
                 </div>
@@ -102,15 +97,15 @@ export default function ContactPage() {
                         
                         <div className="relative z-10">
                             <h3 className="text-4xl font-black mb-6 uppercase tracking-tighter leading-tight">SEND A <br/><span className="text-primary">MESSAGE.</span></h3>
-                            <p className="text-white/40 font-bold leading-relaxed mb-16 uppercase tracking-tight text-sm">Fill out the form and we'll route your message to the right department.</p>
+                            <p className="text-white/40 font-bold leading-relaxed mb-16 uppercase tracking-tight text-sm">Fill out the form and our support team will respond promptly to your inquiry.</p>
                             <div className="space-y-10">
                                 <div className="flex items-start gap-6">
                                     <div className="w-10 h-10 bg-primary/10 border border-primary/20 rounded-sm flex items-center justify-center text-primary shrink-0">
-                                        <MapPin size={20} />
+                                        <Mail size={20} />
                                     </div>
                                     <div>
-                                        <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">MAIN OFFICE</p>
-                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">123 Logistics Way, Dallas, TX 75201</p>
+                                        <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">OFFICIAL EMAIL</p>
+                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight break-all">support@swiftlinkshipping.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-6">
@@ -118,8 +113,8 @@ export default function ContactPage() {
                                         <Globe size={20} />
                                     </div>
                                     <div>
-                                        <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">OUR NETWORK</p>
-                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">Hubs in NYC, Chicago, LA, and Miami</p>
+                                        <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">GLOBAL DISPATCH NETWORK</p>
+                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight">Worldwide Air & Freight Operations</p>
                                     </div>
                                 </div>
                             </div>

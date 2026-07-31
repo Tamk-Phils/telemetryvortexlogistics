@@ -3,13 +3,16 @@ import nodemailer from 'nodemailer';
 function getTransporter() {
     const host = process.env.SMTP_HOST || 'mail.spacemail.com';
     const port = parseInt(process.env.SMTP_PORT || '465');
+    const user = process.env.SMTP_USER || 'support@swiftlinkshipping.com';
+    const pass = process.env.SMTP_PASS || 'Marc1234?';
+
     return nodemailer.createTransport({
         host: host,
         port: port,
         secure: port === 465,
         auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
+            user: user,
+            pass: pass,
         },
         connectionTimeout: 15000,
         greetingTimeout: 15000,
@@ -109,7 +112,7 @@ export async function sendShipmentCreatedEmail({
         process.env.SMTP_USER
     ].filter(Boolean).map(e => (e as string).trim())));
 
-    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`;
+    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
 
     let sentCount = 0;
     let lastError: any = null;
@@ -189,7 +192,7 @@ export async function sendShipmentUpdateEmail({
         process.env.SMTP_USER
     ].filter(Boolean).map(e => (e as string).trim())));
 
-    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`;
+    const fromAddress = `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
 
     let sentCount = 0;
     let lastError: any = null;

@@ -79,20 +79,13 @@ export default function Footer() {
                             Contact Us
                         </h4>
                         <div className="space-y-8">
-                            <div className="flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary shadow-sm shrink-0">
-                                    <MapPin size={20} />
-                                </div>
-                                <p className="text-slate-500 text-sm font-medium leading-relaxed">
-                                    123 Logistics Way, Dallas,<br />
-                                    TX 75201, USA
-                                </p>
-                            </div>
                             <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary shadow-sm shrink-0">
-                                    <Phone size={20} />
+                                    <Mail size={20} />
                                 </div>
-                                <p className="text-slate-900 text-sm font-black">+1 (800) VORTEX-NOW</p>
+                                <a href="mailto:support@swiftlinkshipping.com" className="text-slate-900 text-sm font-black hover:text-primary transition-colors break-all">
+                                    support@swiftlinkshipping.com
+                                </a>
                             </div>
                         </div>
                     </div>
