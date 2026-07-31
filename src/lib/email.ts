@@ -22,12 +22,14 @@ interface BaseEmailParams {
 }
 
 interface NewShipmentParams extends BaseEmailParams {
+    adminEmail?: string;
     senderName: string;
     origin: string;
     destination: string;
 }
 
 interface UpdateShipmentParams extends BaseEmailParams {
+    adminEmail?: string;
     newStatus: string;
     location: string;
     description: string;
@@ -37,6 +39,7 @@ const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://vor
 
 export async function sendShipmentCreatedEmail({
     to,
+    adminEmail,
     subject,
     trackingNumber,
     senderName,
@@ -93,15 +96,25 @@ export async function sendShipmentCreatedEmail({
         </div>
     `;
 
+    const recipientList = [
+        to,
+        adminEmail,
+        process.env.FROM_EMAIL,
+        process.env.SMTP_USER
+    ].filter(Boolean).map(e => (e as string).trim());
+
+    const uniqueTo = Array.from(new Set(recipientList)).join(", ");
+
     try {
         await transporter.sendMail({
-            from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL}>`,
-            to,
+            from: `"${process.env.FROM_NAME || "Vortex Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`,
+            to: uniqueTo,
             subject,
             html: htmlContent,
         });
         return { success: true };
     } catch (error) {
+        console.error("Nodemailer Error:", error);
         console.error("Nodemailer Error:", error);
         return { success: false, error };
     }

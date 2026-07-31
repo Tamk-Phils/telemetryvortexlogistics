@@ -32,7 +32,7 @@ const SidebarContent = ({
                 </div>
                 <div className="flex flex-col">
                     <span className="text-sm font-black tracking-tighter text-slate-900 uppercase">Vortex Admin</span>
-                    <span className="text-[8px] font-black tracking-[0.3em] text-primary uppercase opacity-50">Operational Hub</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Management Portal</span>
                 </div>
             </div>
             <button
@@ -43,7 +43,7 @@ const SidebarContent = ({
             </button>
         </div>
 
-        <nav className="flex-1 space-y-3">
+        <nav className="flex-1 space-y-2">
             {menuItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -51,9 +51,9 @@ const SidebarContent = ({
                         key={item.href}
                         href={item.href}
                         onClick={() => setIsSidebarOpen(false)}
-                        className={`flex items-center gap-4 px-5 py-3.5 rounded-sm transition-all text-[10px] font-black uppercase tracking-widest border ${isActive
-                            ? "bg-slate-900 text-white border-slate-900 shadow-xl"
-                            : "text-slate-400 border-transparent hover:bg-slate-50 hover:text-slate-900"
+                        className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all text-xs font-bold uppercase tracking-wider border ${isActive
+                            ? "bg-slate-900 text-white border-slate-900 shadow-md"
+                            : "text-slate-500 border-transparent hover:bg-slate-100 hover:text-slate-900"
                             }`}
                     >
                         <item.icon size={18} className={isActive ? "text-primary" : ""} />
@@ -63,26 +63,26 @@ const SidebarContent = ({
             })}
         </nav>
 
-        <div className="mt-auto pt-8 border-t border-slate-100 space-y-3">
+        <div className="mt-auto pt-6 border-t border-slate-100 space-y-2">
             <button
                 onClick={() => {
                     setIsSidebarOpen(false);
                     router.push("/");
                 }}
-                className="w-full flex items-center gap-4 px-5 py-3.5 rounded-sm text-slate-400 hover:bg-slate-50 hover:text-slate-900 transition-all text-[10px] font-black uppercase tracking-widest border border-transparent"
+                className="w-full flex items-center gap-3.5 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-all text-xs font-bold uppercase tracking-wider border border-transparent"
             >
                 <ArrowLeft size={18} />
-                Return to Site
+                Back to Website
             </button>
             <button
                 onClick={() => {
                     setIsSidebarOpen(false);
                     router.push("/admin");
                 }}
-                className="w-full flex items-center gap-4 px-5 py-3.5 rounded-sm text-red-400 hover:bg-red-50 transition-all text-[10px] font-black uppercase tracking-widest border border-transparent"
+                className="w-full flex items-center gap-3.5 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-all text-xs font-bold uppercase tracking-wider border border-transparent"
             >
                 <LogOut size={18} />
-                Terminate Session
+                Log Out
             </button>
         </div>
     </div>
@@ -99,13 +99,13 @@ export default function AdminLayout({
 
     const menuItems: MenuItem[] = [
         { label: "Overview", icon: LayoutDashboard, href: "/admin/dashboard" },
-        { label: "Active Deliverys", icon: Package, href: "/admin/dashboard/shipments" },
-        { label: "Initialize Delivery", icon: PlusCircle, href: "/admin/dashboard/add" },
-        { label: "Command Accounts", icon: UserProfileIcon, href: "/admin/dashboard/users" },
-        { label: "Global Reports", icon: BarChartIcon, href: "/admin/dashboard/reports" },
-        { label: "Office Alerts", icon: AlertTriangleIcon, href: "/admin/dashboard/alerts" },
-        { label: "Data Chat", icon: MessageSquare, href: "/admin/dashboard/chat" },
-        { label: "Hub Settings", icon: SettingsIcon, href: "/admin/dashboard/settings" },
+        { label: "All Shipments", icon: Package, href: "/admin/dashboard/shipments" },
+        { label: "Create Shipment", icon: PlusCircle, href: "/admin/dashboard/add" },
+        { label: "Customer Chat", icon: MessageSquare, href: "/admin/dashboard/chat" },
+        { label: "Admin Users", icon: UserProfileIcon, href: "/admin/dashboard/users" },
+        { label: "Reports", icon: BarChartIcon, href: "/admin/dashboard/reports" },
+        { label: "Alerts", icon: AlertTriangleIcon, href: "/admin/dashboard/alerts" },
+        { label: "Settings", icon: SettingsIcon, href: "/admin/dashboard/settings" },
     ];
 
     return (

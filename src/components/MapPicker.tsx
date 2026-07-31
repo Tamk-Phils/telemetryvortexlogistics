@@ -39,7 +39,7 @@ function LocationMarker({ position, onMapClick }: { position: L.LatLng, onMapCli
 
 export default function MapPicker({ onChange, initialLat, initialLng, initialAddress = "" }: MapPickerProps) {
     const [isMounted, setIsMounted] = useState(false);
-    const [position, setPosition] = useState<L.LatLng>(new L.LatLng(initialLat || 52.5200, initialLng || 13.4050));
+    const [position, setPosition] = useState<L.LatLng>(new L.LatLng(initialLat || 32.7767, initialLng || -96.7970));
     const [address, setAddress] = useState(initialAddress);
     const [isSearching, setIsSearching] = useState(false);
 

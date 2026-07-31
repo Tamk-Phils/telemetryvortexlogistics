@@ -33,6 +33,10 @@ export interface Shipment {
     is_deleted?: boolean;
     latitude?: number;
     longitude?: number;
+    origin_lat?: number;
+    origin_lng?: number;
+    destination_lat?: number;
+    destination_lng?: number;
     updates: ShipmentUpdate[];
 }
 

@@ -123,8 +123,8 @@ export default function ShipmentsList() {
             status: shipment.current_status || "Pending",
             location: "",
             description: "",
-            lat: shipment.latitude || 52.5200,
-            lng: shipment.longitude || 13.4050
+            lat: shipment.latitude || 32.7767,
+            lng: shipment.longitude || -96.7970
         });
         setIsModalOpen(true);
     };
@@ -207,138 +207,136 @@ export default function ShipmentsList() {
     });
 
     return (
-        <div className="space-y-12">
-            <div className="flex flex-col md:flex-row gap-8 justify-between items-start md:items-end">
+        <div className="space-y-8">
+            <div className="flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
                 <div>
-                    <div className="flex items-center gap-3 mb-4">
-                        <Radar size={20} className="text-primary animate-pulse" />
-                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Fleet Management</span>
+                    <div className="flex items-center gap-2 mb-2">
+                        <Radar size={18} className="text-primary animate-pulse" />
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Shipment Management</span>
                     </div>
-                    <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">DELIVERY <br/><span className="text-primary italic">SYSTEMS.</span></h1>
+                    <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight uppercase">ALL <span className="text-primary italic">SHIPMENTS</span></h1>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-3 w-full sm:w-auto">
                     <button
                         onClick={loadShipments}
-                        className="p-5 rounded-sm bg-white border border-slate-200 text-slate-400 hover:text-primary transition-all shadow-sm"
-                        title="Sync Database"
+                        className="p-3.5 rounded-xl bg-white border border-slate-200 text-slate-500 hover:text-primary transition-all shadow-sm"
+                        title="Refresh List"
                     >
-                        <RefreshCw size={24} className={isLoading ? "animate-spin" : ""} />
+                        <RefreshCw size={20} className={isLoading ? "animate-spin" : ""} />
                     </button>
                     <Link
                         href="/admin/dashboard/add"
-                        className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-sm font-black text-[10px] uppercase tracking-widest transition-all shadow-xl flex items-center gap-4"
+                        className="flex-1 sm:flex-initial bg-slate-900 hover:bg-primary text-white px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2"
                     >
-                        <Plus size={20} /> INITIALIZE DELIVERY
+                        <Plus size={18} /> Create New Shipment
                     </Link>
                 </div>
             </div>
 
-            <div className="bg-white rounded-sm overflow-hidden border border-slate-200 shadow-3xl relative">
-                <div className="absolute top-0 right-0 w-full h-full opacity-[0.015] grayscale pointer-events-none">
-                     <Image src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2000" alt="Warehouse" fill className="object-cover" />
-                </div>
-                <div className="p-10 border-b border-slate-100 flex flex-wrap gap-8 justify-between items-center bg-slate-50/50 relative z-10">
-                    <div className="relative w-full max-w-xl">
+            <div className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm relative">
+                <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row gap-4 justify-between items-center bg-slate-50/50">
+                    <div className="relative w-full sm:max-w-md">
                         <input
                             type="text"
-                            placeholder="SEARCH BY SIGNATURE OR OFFICE..."
+                            placeholder="Search by tracking number or recipient..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-white border border-slate-200 rounded-sm py-5 px-8 pl-14 text-[10px] font-black uppercase tracking-widest text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-300 outline-none"
+                            className="w-full bg-white border border-slate-200 rounded-xl py-3 px-4 pl-11 text-xs font-semibold text-slate-900 focus:outline-none focus:border-primary transition-all placeholder:text-slate-400 outline-none"
                         />
-                        <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-3 w-full sm:w-auto">
                         <button
                             onClick={() => setShowDeleted(!showDeleted)}
-                            className={`flex items-center gap-3 px-8 py-5 rounded-sm border transition-all text-[10px] font-black uppercase tracking-widest shadow-sm ${showDeleted
+                            className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-3 rounded-xl border transition-all text-xs font-bold uppercase tracking-wider shadow-sm ${showDeleted
                                 ? "bg-amber-50 border-amber-200 text-amber-700"
-                                : "bg-white border-slate-200 text-slate-400 hover:text-slate-900 hover:bg-slate-50"
+                                : "bg-white border-slate-200 text-slate-500 hover:text-slate-900 hover:bg-slate-50"
                                 }`}
                         >
-                            <Trash2 size={18} /> {showDeleted ? "VIEWING ARCHIVED" : "VIEW ARCHIVE"}
+                            <Trash2 size={16} /> {showDeleted ? "Viewing Archived" : "View Archive"}
                         </button>
                     </div>
                 </div>
 
-                <div className="overflow-x-auto relative z-10">
+                <div className="overflow-x-auto">
                     {isLoading && shipments.length === 0 ? (
-                        <div className="p-32 text-center text-slate-300 font-black text-[10px] uppercase tracking-widest animate-pulse">CONNECTING TO GLOBAL DATA CLUSTER...</div>
+                        <div className="p-20 text-center text-slate-400 font-bold text-xs uppercase tracking-wider animate-pulse">Loading shipments...</div>
                     ) : (
                         <>
-                            <table className="w-full text-left">
+                            <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-slate-900 text-white">
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">DELIVERY SIGNATURE</th>
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] hidden md:table-cell">OFFICE TOPOLOGY</th>
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em]">OPERATIONAL STATUS</th>
-                                        <th className="px-10 py-6 text-[9px] font-black uppercase tracking-[0.3em] text-right">COMMANDS</th>
+                                    <tr className="bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">
+                                        <th className="px-6 py-4">Tracking Number</th>
+                                        <th className="px-6 py-4 hidden md:table-cell">Sender & Receiver</th>
+                                        <th className="px-6 py-4">Status</th>
+                                        <th className="px-6 py-4 text-right">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
                                     {filteredShipments.length > 0 ? (
                                         filteredShipments.map((shipment, i) => (
-                                            <tr key={i} className="hover:bg-slate-50 transition-colors group bg-white/40">
-                                                <td className="px-10 py-8">
-                                                    <div className="flex items-center gap-5">
-                                                        <div className="p-3 bg-slate-50 border border-slate-100 rounded-sm text-slate-300 group-hover:text-primary group-hover:border-primary/20 transition-all">
-                                                            <Package size={22} />
+                                            <tr key={i} className="hover:bg-slate-50/80 transition-colors bg-white">
+                                                <td className="px-6 py-5">
+                                                    <div className="flex items-center gap-4">
+                                                        <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-500 shrink-0">
+                                                            <Package size={20} />
                                                         </div>
                                                         <div>
-                                                            <div className="flex items-center gap-3">
-                                                                <p className="text-slate-900 font-black text-lg tracking-tighter uppercase">{shipment.tracking_number}</p>
+                                                            <div className="flex items-center gap-2">
+                                                                <p className="text-slate-900 font-black text-sm tracking-tight">{shipment.tracking_number}</p>
                                                                 <button
                                                                     onClick={() => handleCopy(shipment.tracking_number)}
-                                                                    className={`p-1.5 transition-all ${copyId === shipment.tracking_number ? 'text-primary' : 'text-slate-200 hover:text-slate-900'}`}
+                                                                    className={`p-1 transition-all ${copyId === shipment.tracking_number ? 'text-primary' : 'text-slate-300 hover:text-slate-700'}`}
+                                                                    title="Copy Tracking Number"
                                                                 >
-                                                                    {copyId === shipment.tracking_number ? <Check size={16} /> : <Copy size={16} />}
+                                                                    {copyId === shipment.tracking_number ? <Check size={14} /> : <Copy size={14} />}
                                                                 </button>
                                                             </div>
-                                                            <p className="text-slate-400 text-[9px] font-black mt-1 uppercase tracking-widest">{shipment.item_type || 'GENERAL ASSET'}</p>
+                                                            <p className="text-slate-400 text-xs font-medium mt-0.5">{shipment.item_type || 'General Cargo'}</p>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="px-10 py-8 hidden md:table-cell">
-                                                    <p className="font-black text-slate-900 text-[10px] uppercase tracking-widest">{shipment.recipient_name}</p>
-                                                    <div className="flex items-center gap-2 mt-2">
-                                                        <span className="text-slate-400 text-[9px] font-black uppercase tracking-tight">{shipment.origin}</span>
-                                                        <ArrowUpRight size={12} className="text-primary opacity-50" />
-                                                        <span className="text-slate-400 text-[9px] font-black uppercase tracking-tight">{shipment.destination}</span>
+                                                <td className="px-6 py-5 hidden md:table-cell">
+                                                    <p className="font-bold text-slate-900 text-xs">{shipment.recipient_name}</p>
+                                                    <div className="flex items-center gap-1.5 mt-1 text-slate-500 text-xs font-medium">
+                                                        <span>{shipment.origin || 'Origin'}</span>
+                                                        <ArrowUpRight size={12} className="text-primary" />
+                                                        <span>{shipment.destination || 'Destination'}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-10 py-8">
-                                                    <span className={`px-4 py-2 rounded-sm text-[9px] font-black uppercase tracking-widest border ${shipment.current_status === 'Delivered' ? 'bg-emerald-50 border-emerald-100 text-emerald-600' :
-                                                        shipment.current_status === 'Held' ? 'bg-red-50 border-red-100 text-red-600' :
-                                                            shipment.current_status === 'Pending' ? 'bg-amber-50 border-amber-100 text-amber-600' :
-                                                                'bg-primary/5 border-primary/20 text-primary'
+                                                <td className="px-6 py-5">
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border inline-block ${shipment.current_status === 'Delivered' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' :
+                                                        shipment.current_status === 'Held' ? 'bg-red-50 border-red-200 text-red-700' :
+                                                            shipment.current_status === 'Pending' ? 'bg-amber-50 border-amber-200 text-amber-700' :
+                                                                'bg-blue-50 border-blue-200 text-blue-700'
                                                         }`}>
                                                         {shipment.current_status}
                                                     </span>
                                                 </td>
-                                                <td className="px-10 py-8 text-right">
-                                                    <div className="flex items-center justify-end gap-3">
+                                                <td className="px-6 py-5 text-right">
+                                                    <div className="flex items-center justify-end gap-2">
                                                         <button
                                                             onClick={() => handleEditClick(shipment)}
-                                                            className="p-3 bg-white border border-slate-200 text-slate-400 rounded-sm hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm"
-                                                            title="Push Update"
+                                                            className="p-2.5 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-900 hover:text-white transition-all"
+                                                            title="Update Status"
                                                         >
-                                                            <Edit2 size={18} />
+                                                            <Edit2 size={16} />
                                                         </button>
                                                         {shipment.is_deleted ? (
                                                             <button
                                                                 onClick={() => handleRestore(shipment.tracking_number)}
-                                                                className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-500 rounded-sm hover:bg-emerald-500 hover:text-white hover:border-emerald-500 transition-all shadow-sm"
+                                                                className="p-2.5 bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-xl hover:bg-emerald-600 hover:text-white transition-all"
                                                                 title="Restore"
                                                             >
-                                                                <RefreshCw size={18} />
+                                                                <RefreshCw size={16} />
                                                             </button>
                                                         ) : (
                                                             <button
                                                                 onClick={() => handleDelete(shipment.tracking_number)}
-                                                                className="p-3 bg-red-50 border border-red-200 text-red-400 rounded-sm hover:bg-red-500 hover:text-white hover:border-red-500 transition-all shadow-sm"
+                                                                className="p-2.5 bg-red-50 border border-red-200 text-red-500 rounded-xl hover:bg-red-600 hover:text-white transition-all"
                                                                 title="Archive"
                                                             >
-                                                                <Trash2 size={18} />
+                                                                <Trash2 size={16} />
                                                             </button>
                                                         )}
                                                     </div>
@@ -347,15 +345,15 @@ export default function ShipmentsList() {
                                         ))
                                     ) : (
                                         <tr>
-                                            <td colSpan={4} className="px-10 py-32 text-center bg-slate-50/50">
-                                                <p className="text-slate-300 font-black text-[10px] uppercase tracking-[0.4em]">NO DELIVERY RECORDS DISCOVERED</p>
+                                            <td colSpan={4} className="px-6 py-20 text-center bg-slate-50/50">
+                                                <p className="text-slate-400 font-bold text-xs uppercase tracking-wider">No shipments found</p>
                                             </td>
                                         </tr>
                                     )}
                                 </tbody>
                             </table>
-                            <div className="p-10 bg-slate-50/50 border-t border-slate-200 relative z-10">
-                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">SYNCHRONIZED WITH {filteredShipments.length} ACTIVE GLOBAL ASSET PACKETS</p>
+                            <div className="p-6 bg-slate-50/50 border-t border-slate-200">
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Showing {filteredShipments.length} total shipments</p>
                             </div>
                         </>
                     )}
@@ -364,27 +362,27 @@ export default function ShipmentsList() {
 
             {/* Status Update Modal */}
             {isModalOpen && editingShipment && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
-                    <div className="bg-white w-full max-w-xl max-h-[90vh] flex flex-col rounded-sm shadow-3xl overflow-hidden border border-slate-200 animate-in zoom-in-95 duration-300">
-                        <div className="p-12 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 shrink-0">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white w-full max-w-xl max-h-[90vh] flex flex-col rounded-2xl shadow-2xl overflow-hidden border border-slate-200 animate-in zoom-in-95 duration-200">
+                        <div className="p-6 sm:p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 shrink-0">
                             <div>
-                                <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">PUSH DATA</h3>
-                                <p className="text-[10px] font-black text-primary mt-2 uppercase tracking-widest">ID: {editingShipment.tracking_number}</p>
+                                <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase">Update Shipment Status</h3>
+                                <p className="text-xs font-bold text-primary mt-1 uppercase tracking-wider">Tracking #{editingShipment.tracking_number}</p>
                             </div>
                             <button
                                 onClick={() => setIsModalOpen(false)}
-                                className="p-3 rounded-sm hover:bg-slate-100 text-slate-400 hover:text-slate-900 transition-all"
+                                className="p-2 rounded-xl hover:bg-slate-200 text-slate-400 hover:text-slate-900 transition-all"
                             >
-                                <X size={28} />
+                                <X size={24} />
                             </button>
                         </div>
 
-                        <form onSubmit={handleUpdateStatus} className="p-12 space-y-10 overflow-y-auto">
-                            <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">NEW MILESTONE</label>
+                        <form onSubmit={handleUpdateStatus} className="p-6 sm:p-8 space-y-6 overflow-y-auto">
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">New Status</label>
                                 <div className="relative">
                                     <select
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-sm py-5 px-8 focus:outline-none focus:border-primary font-black text-[10px] uppercase tracking-widest text-slate-900 appearance-none cursor-pointer outline-none"
+                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:outline-none focus:border-primary font-bold text-xs text-slate-900 appearance-none cursor-pointer outline-none"
                                         value={newUpdate.status}
                                         onChange={(e) => setNewUpdate({ ...newUpdate, status: e.target.value })}
                                         required
@@ -396,13 +394,13 @@ export default function ShipmentsList() {
                                         <option value="Held">Held at Customs</option>
                                         <option value="Postponed">Postponed</option>
                                     </select>
-                                    <Clock className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none" size={20} />
+                                    <Clock className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={18} />
                                 </div>
                             </div>
 
-                            <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">GEOSPATIAL LOCK</label>
-                                <div className="rounded-sm overflow-hidden border border-slate-200 shadow-inner">
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Update Current Location on Map</label>
+                                <div className="rounded-xl overflow-hidden border border-slate-200 shadow-inner">
                                     <MapPicker 
                                         initialLat={newUpdate.lat} 
                                         initialLng={newUpdate.lng} 
@@ -411,30 +409,30 @@ export default function ShipmentsList() {
                                 </div>
                             </div>
 
-                            <div className="space-y-3">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">DATA LOG</label>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Update Notes / Details</label>
                                 <textarea
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-sm py-6 px-8 focus:outline-none focus:border-primary font-bold text-slate-500 text-xs min-h-[120px] outline-none resize-none uppercase tracking-tight"
-                                    placeholder="ENTER DESCRIPTIVE VARIANCE LOG..."
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-4 focus:outline-none focus:border-primary font-semibold text-slate-700 text-xs min-h-[100px] outline-none resize-none"
+                                    placeholder="e.g. Package arrived at distribution hub, cleared customs..."
                                     value={newUpdate.description}
                                     onChange={(e) => setNewUpdate({ ...newUpdate, description: e.target.value })}
                                     required
                                 />
                             </div>
 
-                            <div className="pt-6 flex gap-6">
+                            <div className="pt-4 flex gap-4">
                                 <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex-1 bg-white border border-slate-200 text-slate-400 py-6 rounded-sm font-black text-[10px] uppercase tracking-widest hover:text-slate-900 transition-all"
+                                    className="flex-1 bg-white border border-slate-200 text-slate-600 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-slate-100 transition-all"
                                 >
-                                    TERMINATE
+                                    Cancel
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-1 bg-slate-900 hover:bg-primary text-white py-6 rounded-sm font-black text-[10px] uppercase tracking-[0.4em] shadow-xl flex items-center justify-center gap-4 transition-all"
+                                    className="flex-1 bg-slate-900 hover:bg-primary text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all"
                                 >
-                                    <Save size={20} /> SYNC SYSTEM
+                                    <Save size={18} /> Save Update
                                 </button>
                             </div>
                         </form>

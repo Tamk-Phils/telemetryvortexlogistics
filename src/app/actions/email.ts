@@ -4,6 +4,7 @@ import { sendShipmentCreatedEmail, sendShipmentUpdateEmail } from "@/lib/email";
 
 export async function notifyShipmentCreated(params: {
     to: string;
+    adminEmail?: string;
     subject: string;
     trackingNumber: string;
     senderName: string;

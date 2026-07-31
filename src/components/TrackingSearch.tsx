@@ -172,18 +172,26 @@ export default function TrackingSearch() {
                                 </div>
                             </div>
 
-                            {/* Live Map */}
-                            {result.latitude && result.longitude && (
-                                <div className="mb-20 h-[500px] w-full rounded-sm overflow-hidden shadow-2xl relative border border-slate-200 group">
-                                    <div className="absolute top-8 left-8 z-[400] bg-slate-900 text-white px-6 py-3 rounded-sm shadow-2xl flex items-center gap-4">
-                                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,242,255,0.8)]" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">LIVE LOCATION</span>
-                                    </div>
-                                    <div className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-80 group-hover:opacity-100">
-                                        <LiveMap lat={result.latitude} lng={result.longitude} zoom={13} />
-                                    </div>
+                            {/* Live Map Route & Moving Package */}
+                            <div className="mb-20 h-[500px] w-full rounded-sm overflow-hidden shadow-2xl relative border border-slate-200 group">
+                                <div className="absolute top-8 left-8 z-[400] bg-slate-900 text-white px-6 py-3 rounded-sm shadow-2xl flex items-center gap-4 border border-white/10">
+                                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(0,242,255,0.8)]" />
+                                    <span className="text-[10px] font-black uppercase tracking-[0.3em]">LIVE ROUTE & PACKAGE SURVEILLANCE</span>
                                 </div>
-                            )}
+                                <div className="absolute inset-0">
+                                    <LiveMap
+                                        lat={result.latitude}
+                                        lng={result.longitude}
+                                        originLat={result.origin_lat}
+                                        originLng={result.origin_lng}
+                                        originName={result.origin}
+                                        destinationLat={result.destination_lat}
+                                        destinationLng={result.destination_lng}
+                                        destinationName={result.destination}
+                                        currentLocationName={result.updates?.[0]?.location || result.origin}
+                                    />
+                                </div>
+                            </div>
 
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
                                 <div className="lg:col-span-2 space-y-12">
