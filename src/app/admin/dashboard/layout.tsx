@@ -149,20 +149,27 @@ export default function AdminLayout({
                 )}
             </AnimatePresence>
 
-            <div className="flex-1 flex flex-col min-w-0">
-                {/* Mobile Top Header */}
-                <header className="lg:hidden h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between sticky top-0 z-30">
-                    <div className="flex items-center gap-4">
-                        <div className="w-8 h-8 rounded-sm bg-slate-900 flex items-center justify-center text-primary font-black text-sm">
-                            <Radar size={16} />
+            <div className="flex-1 flex flex-col min-w-0 pt-28 lg:pt-0">
+                {/* Mobile Top Header (Sits cleanly below global site Header on mobile) */}
+                <header className="lg:hidden h-16 bg-slate-900 text-white px-6 flex items-center justify-between sticky top-[76px] z-30 border-b border-slate-800 shadow-md">
+                    <div className="flex items-center gap-3">
+                        <Link 
+                            href="/" 
+                            className="flex items-center gap-1.5 text-xs font-bold text-slate-200 hover:text-primary bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/80 transition-colors"
+                        >
+                            <ArrowLeft size={14} className="text-primary" /> Home
+                        </Link>
+                        <div className="h-4 w-px bg-slate-700" />
+                        <div className="flex items-center gap-2">
+                            <Radar size={16} className="text-primary animate-pulse" />
+                            <span className="text-[11px] font-black text-white uppercase tracking-wider">Admin Portal</span>
                         </div>
-                        <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest">Admin Terminal</span>
                     </div>
                     <button
                         onClick={() => setIsSidebarOpen(true)}
-                        className="p-2 text-slate-400 hover:text-slate-900 focus:outline-none"
+                        className="p-2 text-white hover:text-primary focus:outline-none transition-colors"
                     >
-                        <Menu size={24} />
+                        <Menu size={22} />
                     </button>
                 </header>
 
