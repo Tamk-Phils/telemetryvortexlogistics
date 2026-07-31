@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Polyline, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { getCoordsFromLocationName } from '@/lib/geocoding';
+import 'leaflet/dist/leaflet.css';
 
 // Origin Icon (Start Point)
 const originIcon = L.divIcon({

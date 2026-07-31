@@ -1,8 +1,8 @@
 -- ==========================================================
--- VORTEX SHIPPING PLATFORM - COMPLETE SQL SCHEMA & DATABASE SETUP
+-- VORTEX SHIPPING PLATFORM - UNIFIED PRODUCTION SQL SETUP SCRIPT
 -- ==========================================================
--- Run this script in your Supabase SQL Editor to create all required
--- tables, indexes, Row-Level Security (RLS) policies, and sample data.
+-- Run this SINGLE script in your Supabase SQL Editor to configure all
+-- tables, columns, indexes, Row-Level Security (RLS) policies, and seed data.
 
 -- 1. Enable UUID Extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -15,10 +15,12 @@ CREATE TABLE IF NOT EXISTS shipments (
     description TEXT,
     sender_name VARCHAR(255),
     sender_email VARCHAR(255),
+    sender_phone VARCHAR(50),
+    sender_address TEXT,
     recipient_name VARCHAR(255),
     recipient_email VARCHAR(255),
-    recipient_address TEXT,
     recipient_phone VARCHAR(50),
+    recipient_address TEXT,
     origin VARCHAR(255) DEFAULT 'Dallas, TX',
     destination VARCHAR(255) DEFAULT 'New York, NY',
     origin_lat DECIMAL(10, 7),
@@ -29,6 +31,11 @@ CREATE TABLE IF NOT EXISTS shipments (
     longitude DECIMAL(10, 7),
     weight DECIMAL(10, 2) DEFAULT 0.00,
     dimensions VARCHAR(100) DEFAULT '12x12x12',
+    service_level VARCHAR(100) DEFAULT 'Priority Air Express',
+    carrier VARCHAR(100) DEFAULT 'Vortex Air Cargo',
+    declared_value DECIMAL(10, 2) DEFAULT 0.00,
+    quantity INTEGER DEFAULT 1,
+    special_notes TEXT,
     current_status VARCHAR(100) DEFAULT 'Pending',
     payment_method VARCHAR(100) DEFAULT 'Credit Card',
     payment_status VARCHAR(100) DEFAULT 'Paid',
@@ -38,6 +45,24 @@ CREATE TABLE IF NOT EXISTS shipments (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Safely add any missing columns if shipments table already existed
+DO $$ 
+BEGIN
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS sender_phone VARCHAR(50);
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS sender_address TEXT;
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS recipient_phone VARCHAR(50);
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS service_level VARCHAR(100) DEFAULT 'Priority Air Express';
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS carrier VARCHAR(100) DEFAULT 'Vortex Air Cargo';
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS declared_value DECIMAL(10, 2) DEFAULT 0.00;
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS quantity INTEGER DEFAULT 1;
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS special_notes TEXT;
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS latitude DECIMAL(10, 7);
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS longitude DECIMAL(10, 7);
+    ALTER TABLE shipments ADD COLUMN IF NOT EXISTS is_deleted BOOLEAN DEFAULT FALSE;
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END $$;
 
 -- 3. CREATE TABLE: shipment_updates (Relational updates history)
 CREATE TABLE IF NOT EXISTS shipment_updates (
@@ -95,7 +120,17 @@ ALTER TABLE admin_users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE chat_messages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE system_alerts ENABLE ROW LEVEL SECURITY;
 
--- Allow Public / Anon & Authenticated full access for API operations
+-- Drop existing policies to prevent conflicts
+DROP POLICY IF EXISTS "Public Read Shipments" ON shipments;
+DROP POLICY IF EXISTS "Public Insert Shipments" ON shipments;
+DROP POLICY IF EXISTS "Public Update Shipments" ON shipments;
+DROP POLICY IF EXISTS "Public Read Updates" ON shipment_updates;
+DROP POLICY IF EXISTS "Public Insert Updates" ON shipment_updates;
+DROP POLICY IF EXISTS "Public Chat Messages" ON chat_messages;
+DROP POLICY IF EXISTS "Public Admin Users" ON admin_users;
+DROP POLICY IF EXISTS "Public System Alerts" ON system_alerts;
+
+-- Create policies for public / anon API access
 CREATE POLICY "Public Read Shipments" ON shipments FOR SELECT USING (true);
 CREATE POLICY "Public Insert Shipments" ON shipments FOR INSERT WITH CHECK (true);
 CREATE POLICY "Public Update Shipments" ON shipments FOR UPDATE USING (true) WITH CHECK (true);
@@ -107,26 +142,34 @@ CREATE POLICY "Public Chat Messages" ON chat_messages FOR ALL USING (true);
 CREATE POLICY "Public Admin Users" ON admin_users FOR ALL USING (true);
 CREATE POLICY "Public System Alerts" ON system_alerts FOR ALL USING (true);
 
--- 9. SAMPLE SEED DATA
+-- 9. INITIAL SAMPLE SEED DATA
 INSERT INTO shipments (
-    tracking_number, item_type, description, sender_name, sender_email,
-    recipient_name, recipient_email, recipient_address, origin, destination,
-    latitude, longitude, weight, current_status, payment_method, payment_status, updates
+    tracking_number, item_type, description, sender_name, sender_email, sender_phone,
+    recipient_name, recipient_email, recipient_phone, recipient_address, origin, destination,
+    latitude, longitude, weight, dimensions, service_level, carrier, declared_value, quantity,
+    current_status, payment_method, payment_status, updates
 ) VALUES 
 (
     'VTX948210394',
     'Consumer Electronics',
-    'Express delivery of high-value optical components',
-    'SwiftLogistics US Admin',
+    'Express delivery of high-value optical components and server boards',
+    'SwiftLogistics US Hub',
     'support@swiftlinkshipping.com',
+    '+1 (555) 019-2834',
     'Sarah Jenkins',
     'sarah.j@example.com',
+    '+1 (555) 839-2011',
     '742 Evergreen Terrace, New York, NY 10001',
     'Dallas Hub, TX',
     'New York, NY',
     40.7128,
     -74.0060,
     14.50,
+    '16x12x8',
+    'Priority Air Express',
+    'Vortex Air Cargo',
+    450.00,
+    2,
     'In Delivery',
     'Credit Card',
     'Paid',
@@ -135,17 +178,24 @@ INSERT INTO shipments (
 (
     'VTX104928172',
     'Commercial Goods',
-    'Bulk manufacturing parts for industrial production',
+    'Bulk manufacturing parts for industrial production equipment',
     'Vortex Global Hub',
     'support@swiftlinkshipping.com',
+    '+1 (555) 392-1029',
     'Robert Chen',
     'r.chen@globalport.io',
+    '+1 (555) 492-8102',
     '100 Bay Street, San Francisco, CA 94105',
     'Chicago, IL',
     'San Francisco, CA',
     37.7749,
     -122.4194,
     42.00,
+    '24x20x18',
+    'Standard Ground',
+    'Vortex Freight Trucking',
+    1200.00,
+    5,
     'Out for Delivery',
     'Bank Transfer',
     'Paid',

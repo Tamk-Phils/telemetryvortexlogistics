@@ -49,8 +49,20 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+        {/* Mobile View Background Image (Clear, no blur) */}
+        <div className="absolute inset-0 z-0 lg:hidden pointer-events-none overflow-hidden">
+          <Image 
+            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
+            alt="Vortex Background" 
+            fill 
+            className="object-cover opacity-20"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white" />
+        </div>
+
         {/* Decorative background circle */}
-        <div className="absolute top-0 right-0 w-[50%] h-[100%] bg-blue-50 rounded-l-full -mr-20 z-0 opacity-50" />
+        <div className="absolute top-0 right-0 w-[50%] h-[100%] bg-blue-50 rounded-l-full -mr-20 z-0 opacity-50 hidden lg:block" />
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

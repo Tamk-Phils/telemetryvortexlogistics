@@ -18,23 +18,30 @@ export default function AddShipment() {
     const [isSaving, setIsSaving] = useState(false);
     const [formData, setFormData] = useState({
         tracking_number: "",
-        item_type: "",
+        item_type: "General Cargo",
         description: "",
         sender_name: "",
         sender_email: "",
+        sender_phone: "",
         recipient_name: "",
-        recipient_address: "",
         recipient_email: "",
+        recipient_phone: "",
+        recipient_address: "",
         origin: "Dallas, TX",
         destination: "New York, NY",
         latitude: 32.7767,
         longitude: -96.7970,
-        weight: "",
-        dimensions: "",
+        weight: "15",
+        dimensions: "12x12x12",
+        service_level: "Priority Air Express",
+        carrier: "Vortex Air Express Fleet",
+        declared_value: "150.00",
+        quantity: "1",
         current_status: "Pending",
         payment_method: "Credit Card",
         payment_status: "Paid",
-        estimated_delivery: ""
+        estimated_delivery: "",
+        special_notes: ""
     });
 
     const [error, setError] = useState<string | null>(null);
@@ -181,20 +188,43 @@ export default function AddShipment() {
                             </div>
                             PACKAGE INFORMATION
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                             <div className="space-y-2">
                                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Item / Package Type</label>
                                 <input
                                     type="text"
                                     required
-                                    placeholder="e.g. Clothes, Electronics, Books"
+                                    placeholder="e.g. Consumer Electronics"
                                     className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
                                     value={formData.item_type}
                                     onChange={(e) => setFormData({ ...formData, item_type: e.target.value })}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Estimated Delivery Date</label>
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Service Level / Speed</label>
+                                <select
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none cursor-pointer"
+                                    value={formData.service_level}
+                                    onChange={(e) => setFormData({ ...formData, service_level: e.target.value })}
+                                >
+                                    <option value="Standard Ground">Standard Ground (3-5 Days)</option>
+                                    <option value="Priority Air Express">Priority Air Express (1-2 Days)</option>
+                                    <option value="Overnight Flight">Overnight Flight (Next Day)</option>
+                                    <option value="Ocean Freight">Ocean Freight Cargo (7-14 Days)</option>
+                                </select>
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Carrier Transport</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Vortex Fleet Air"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                    value={formData.carrier}
+                                    onChange={(e) => setFormData({ ...formData, carrier: e.target.value })}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Est. Delivery Date</label>
                                 <input
                                     type="datetime-local"
                                     required
@@ -204,12 +234,46 @@ export default function AddShipment() {
                                 />
                             </div>
                         </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Declared Value ($ USD)</label>
+                                <input
+                                    type="number"
+                                    placeholder="150.00"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                    value={formData.declared_value}
+                                    onChange={(e) => setFormData({ ...formData, declared_value: e.target.value })}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Quantity / Box Count</label>
+                                <input
+                                    type="number"
+                                    placeholder="1"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                    value={formData.quantity}
+                                    onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Special Handling Tags</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Fragile, Temperature Controlled"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                    value={formData.special_notes}
+                                    onChange={(e) => setFormData({ ...formData, special_notes: e.target.value })}
+                                />
+                            </div>
+                        </div>
+
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Package Description & Notes</label>
+                            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Package Description & Handling Notes</label>
                             <textarea
                                 required
                                 rows={3}
-                                placeholder="Add any extra details or handling instructions..."
+                                placeholder="Add detailed package contents, dimensions notes, or delivery instructions..."
                                 className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-4 focus:border-primary font-semibold text-slate-700 text-xs outline-none resize-none"
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -229,26 +293,38 @@ export default function AddShipment() {
                             </h3>
                             <div className="space-y-4">
                                 <div>
-                                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Sender Name</label>
+                                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Sender / Company Name</label>
                                     <input
                                         type="text"
                                         required
-                                        placeholder="Full Name"
+                                        placeholder="Full Name or Business Name"
                                         className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
                                         value={formData.sender_name}
                                         onChange={(e) => setFormData({ ...formData, sender_name: e.target.value })}
                                     />
                                 </div>
-                                <div>
-                                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Sender Email</label>
-                                    <input
-                                        type="email"
-                                        required
-                                        placeholder="admin@swiftlinkshipping.com"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
-                                        value={formData.sender_email}
-                                        onChange={(e) => setFormData({ ...formData, sender_email: e.target.value })}
-                                    />
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Sender Email</label>
+                                        <input
+                                            type="email"
+                                            required
+                                            placeholder="admin@swiftlinkshipping.com"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                            value={formData.sender_email}
+                                            onChange={(e) => setFormData({ ...formData, sender_email: e.target.value })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Sender Phone</label>
+                                        <input
+                                            type="text"
+                                            placeholder="+1 (555) 019-2834"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                            value={formData.sender_phone}
+                                            onChange={(e) => setFormData({ ...formData, sender_phone: e.target.value })}
+                                        />
+                                    </div>
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Origin City / Hub</label>
@@ -278,22 +354,34 @@ export default function AddShipment() {
                                     <input
                                         type="text"
                                         required
-                                        placeholder="Full Name"
+                                        placeholder="Full Name or Business Name"
                                         className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
                                         value={formData.recipient_name}
                                         onChange={(e) => setFormData({ ...formData, recipient_name: e.target.value })}
                                     />
                                 </div>
-                                <div>
-                                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Recipient Email</label>
-                                    <input
-                                        type="email"
-                                        required
-                                        placeholder="receiver@example.com"
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
-                                        value={formData.recipient_email}
-                                        onChange={(e) => setFormData({ ...formData, recipient_email: e.target.value })}
-                                    />
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Recipient Email</label>
+                                        <input
+                                            type="email"
+                                            required
+                                            placeholder="receiver@example.com"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                            value={formData.recipient_email}
+                                            onChange={(e) => setFormData({ ...formData, recipient_email: e.target.value })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Recipient Phone</label>
+                                        <input
+                                            type="text"
+                                            placeholder="+1 (555) 839-2011"
+                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
+                                            value={formData.recipient_phone}
+                                            onChange={(e) => setFormData({ ...formData, recipient_phone: e.target.value })}
+                                        />
+                                    </div>
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Destination City / Hub</label>
@@ -307,11 +395,11 @@ export default function AddShipment() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Street Address</label>
+                                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1 block mb-1">Full Delivery Street Address</label>
                                     <textarea
                                         required
                                         rows={2}
-                                        placeholder="Full Street Address"
+                                        placeholder="Full Street Address (Street, Apt/Suite, Zip)"
                                         className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none resize-none"
                                         value={formData.recipient_address}
                                         onChange={(e) => setFormData({ ...formData, recipient_address: e.target.value })}
