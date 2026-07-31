@@ -134,14 +134,14 @@ export default function AboutPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                      {[
-                        { name: "Alex Rivera", role: "CEO & Founder", img: "https://i.pravatar.cc/150?u=a" },
-                        { name: "Elena Petrova", role: "Head of Operations", img: "https://i.pravatar.cc/150?u=b" },
-                        { name: "Marcus Thorne", role: "Tech Director", img: "https://i.pravatar.cc/150?u=c" },
-                        { name: "Sumi Lee", role: "Customer Success", img: "https://i.pravatar.cc/150?u=d" }
+                        { name: "Alex Rivera", role: "CEO & Founder", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=250" },
+                        { name: "Elena Petrova", role: "Head of Operations", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250" },
+                        { name: "Marcus Thorne", role: "Tech Director", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=250" },
+                        { name: "Sumi Lee", role: "Customer Success", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=250" }
                      ].map((member, i) => (
                         <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm text-center">
                            <div className="w-24 h-24 rounded-full overflow-hidden relative mx-auto mb-6 border-4 border-slate-50">
-                              <Image src={member.img} alt={member.name} fill />
+                              <Image src={member.img} alt={member.name} fill className="object-cover" />
                            </div>
                            <h4 className="text-xl font-bold text-slate-900">{member.name}</h4>
                            <p className="text-slate-400 font-medium">{member.role}</p>

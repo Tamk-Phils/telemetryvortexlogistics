@@ -85,9 +85,14 @@ export default function Home() {
 
               <div className="flex items-center gap-8 pt-10 border-t border-slate-100">
                  <div className="flex -space-x-3">
-                    {[1,2,3,4].map(i => (
+                    {[
+                      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
+                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150",
+                      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150",
+                      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150"
+                    ].map((imgUrl, i) => (
                       <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden relative bg-slate-200">
-                        <Image src={`https://i.pravatar.cc/150?u=${i}`} alt="User" fill />
+                        <Image src={imgUrl} alt="User" fill className="object-cover" />
                       </div>
                     ))}
                  </div>

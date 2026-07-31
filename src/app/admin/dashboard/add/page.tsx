@@ -5,9 +5,12 @@ import { ArrowLeft, Save, Package, User, MapPin, Scale, AlertCircle, Clock, Cred
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { supabase } from "@/lib/supabase";
 import { notifyShipmentCreated } from "@/app/actions/email";
 import { geocodeLocationQuery } from "@/lib/geocoding";
+
+const MapPicker = dynamic(() => import("@/components/MapPicker"), { ssr: false });
 
 export default function AddShipment() {
     const router = useRouter();
@@ -24,6 +27,8 @@ export default function AddShipment() {
         recipient_email: "",
         origin: "Dallas, TX",
         destination: "New York, NY",
+        latitude: 32.7767,
+        longitude: -96.7970,
         weight: "",
         dimensions: "",
         current_status: "Pending",
@@ -313,6 +318,34 @@ export default function AddShipment() {
                                     />
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Section 2.5: Interactive Map Location Selection */}
+                    <div className="space-y-6 pt-6 border-t border-slate-100 relative z-10">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                            <h3 className="text-lg font-black text-slate-900 tracking-tight uppercase flex items-center gap-3">
+                                <div className="w-9 h-9 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+                                    <MapPin size={18} />
+                                </div>
+                                INTERACTIVE LIVE MAP (ORIGIN & LOCATION PIN)
+                            </h3>
+                            <span className="text-xs font-semibold text-slate-400">Click on map or search location to set precise GPS coordinates</span>
+                        </div>
+                        <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm h-80 relative">
+                            <MapPicker
+                                initialLat={formData.latitude}
+                                initialLng={formData.longitude}
+                                initialAddress={formData.origin}
+                                onChange={(lat, lng, addr) => {
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        latitude: lat,
+                                        longitude: lng,
+                                        origin: addr || prev.origin
+                                    }));
+                                }}
+                            />
                         </div>
                     </div>
 
