@@ -17,34 +17,34 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Vortex Shipping | Fast & Easy US Delivery",
+    default: "Vortex Shipping | Global Freight & Package Tracking",
     template: "%s | Vortex Shipping"
   },
-  description: "The simplest way to ship and track your packages across America. Reliable delivery you can count on with Vortex Shipping.",
-  keywords: ["package tracking", "vortex shipping", "shipping company", "us delivery", "send a box", "fast shipping"],
-  authors: [{ name: "Vortex Team" }],
+  description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with Vortex Shipping.",
+  keywords: ["package tracking", "vortex shipping", "swiftlink shipping", "shipping company", "express delivery", "global freight", "cargo tracking"],
+  authors: [{ name: "Vortex Shipping Team" }],
   creator: "Vortex Shipping",
-  publisher: "Vortex Shipping Inc",
+  publisher: "Vortex Shipping Logistics",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://vortex-shipping.com"),
+  metadataBase: new URL("https://swiftlinkshipping.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Vortex Shipping | Fast & Easy US Delivery",
-    description: "The simplest and most reliable way to ship and track your packages across America. Move your world with Vortex Shipping.",
-    url: "https://vortex-shipping.com",
-    siteName: "Vortex Shipping",
+    title: "Vortex Shipping | Global Freight & Package Tracking",
+    description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with Vortex Shipping.",
+    url: "https://swiftlinkshipping.com",
+    siteName: "Vortex Shipping Logistics",
     images: [
       {
         url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
         width: 1200,
         height: 630,
-        alt: "Vortex Shipping Center",
+        alt: "Vortex Shipping Logistics",
       },
     ],
     locale: "en_US",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vortex Shipping | Fast & Easy US Delivery",
-    description: "The simplest and most reliable way to ship and track your packages across America. Move your world with Vortex Shipping.",
+    title: "Vortex Shipping | Global Freight & Package Tracking",
+    description: "Global logistics, express air transit, ocean freight, and real-time package tracking with Vortex Shipping.",
     images: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200"],
   },
   robots: {
@@ -74,6 +74,20 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LogisticsService",
+  "name": "Vortex Shipping Logistics",
+  "url": "https://swiftlinkshipping.com",
+  "logo": "https://swiftlinkshipping.com/favicon.ico",
+  "description": "Global freight forwarding, air transit, and real-time package tracking portal.",
+  "email": "support@swiftlinkshipping.com",
+  "sameAs": [
+    "https://swiftlinkshipping.com"
+  ],
+  "areaServed": "Worldwide"
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -81,6 +95,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.className} bg-background text-foreground shrink-0`}>
         <div className="min-h-screen flex flex-col relative overflow-x-hidden">
           {/* Subtle Light Glow Effect */}
