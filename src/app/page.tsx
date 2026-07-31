@@ -49,16 +49,17 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
-        {/* Mobile View Background Image (Clear, no blur) */}
+        {/* Mobile View Background Image (Raw image directly behind text, zero white coating) */}
         <div className="absolute inset-0 z-0 lg:hidden pointer-events-none overflow-hidden">
           <Image 
             src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2000" 
             alt="Vortex Background" 
             fill 
-            className="object-cover opacity-20"
+            className="object-cover opacity-100"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white" />
+          {/* Subtle gradient contrast overlay so text pops over raw image without any white wash */}
+          <div className="absolute inset-0 bg-slate-900/30" />
         </div>
 
         {/* Decorative background circle */}
@@ -70,19 +71,19 @@ export default function Home() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-7 space-y-8"
+              className="lg:col-span-7 space-y-8 bg-white/90 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none p-6 md:p-10 lg:p-0 rounded-3xl border border-white/40 lg:border-none shadow-xl lg:shadow-none"
             >
-              <div className="inline-flex items-center gap-3 bg-primary/5 px-4 py-2 rounded-full border border-primary/10">
+              <div className="inline-flex items-center gap-3 bg-primary/10 lg:bg-primary/5 px-4 py-2 rounded-full border border-primary/20 lg:border-primary/10">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <span className="text-xs font-bold text-primary uppercase tracking-wider">Fast Shipping Across America</span>
               </div>
               
-              <h1 className="text-6xl md:text-8xl font-black leading-[1.1] tracking-tighter text-slate-900">
+              <h1 className="text-5xl md:text-8xl font-black leading-[1.1] tracking-tighter text-slate-900">
                 Ship Your Stuff <br />
                 With <span className="text-primary">Vortex.</span>
               </h1>
               
-              <p className="text-xl text-slate-500 leading-relaxed max-w-2xl font-medium">
+              <p className="text-lg md:text-xl text-slate-700 lg:text-slate-500 leading-relaxed max-w-2xl font-bold lg:font-medium">
                 The easiest way to send and track your boxes. Whether it's across town or coast-to-coast, we get your packages there safe and on time.
               </p>
 
