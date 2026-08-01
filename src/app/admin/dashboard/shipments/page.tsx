@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Search, Plus, Filter, Edit2, Trash2, ArrowUpRight, Package, RefreshCw, X, Save, MapPin, Clock, Copy, Check, Radar, Activity, Zap } from "lucide-react";
+import { Search, Plus, Filter, Edit2, Trash2, ArrowUpRight, Package, RefreshCw, X, Save, MapPin, Clock, Copy, Check, Radar, Activity, Zap, Loader2 } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -20,6 +20,7 @@ export default function ShipmentsList() {
 
     // Status Update Modal State
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUpdating, setIsUpdating] = useState(false);
     const [editingShipment, setEditingShipment] = useState<Shipment | null>(null);
     const [newUpdate, setNewUpdate] = useState({
         status: "Pending",
@@ -131,7 +132,8 @@ export default function ShipmentsList() {
 
     const handleUpdateStatus = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!editingShipment) return;
+        if (!editingShipment || isUpdating) return;
+        setIsUpdating(true);
 
         const updateRecord = {
             id: Math.random().toString(36).substr(2, 9),
@@ -192,6 +194,8 @@ export default function ShipmentsList() {
         } catch (err) {
             console.error(err);
             alert("Failed to update transit data.");
+        } finally {
+            setIsUpdating(false);
         }
     };
 
@@ -423,16 +427,28 @@ export default function ShipmentsList() {
                             <div className="pt-4 flex gap-4">
                                 <button
                                     type="button"
+                                    disabled={isUpdating}
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex-1 bg-white border border-slate-200 text-slate-600 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-slate-100 transition-all"
+                                    className="flex-1 bg-white border border-slate-200 text-slate-600 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-slate-100 transition-all disabled:opacity-50"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-1 bg-slate-900 hover:bg-primary text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all"
+                                    disabled={isUpdating}
+                                    className="flex-1 bg-slate-900 hover:bg-primary text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all disabled:opacity-75 disabled:cursor-not-allowed"
                                 >
-                                    <Save size={18} /> Save Update
+                                    {isUpdating ? (
+                                        <>
+                                            <Loader2 size={18} className="animate-spin text-white" />
+                                            <span>Saving Update...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Save size={18} />
+                                            <span>Save Update</span>
+                                        </>
+                                    )}
                                 </button>
                             </div>
                         </form>
