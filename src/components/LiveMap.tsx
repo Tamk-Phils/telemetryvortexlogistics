@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Polyline, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { getCoordsFromLocationName } from '@/lib/geocoding';
+import { Maximize2, Minimize2, Navigation, MapPin, Compass } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 
 // Origin Icon (Start Point)
@@ -74,14 +75,32 @@ interface LiveMapProps {
     zoom?: number;
 }
 
-// Component to handle map view fitting all route markers
-function FitBoundsView({ bounds }: { bounds: L.LatLngBoundsExpression }) {
+// Map Controller Component for view switching and size handling
+function MapFocusController({ 
+    currentCoords, 
+    viewMode, 
+    bounds, 
+    isFullscreen 
+}: { 
+    currentCoords: [number, number]; 
+    viewMode: 'package' | 'route'; 
+    bounds: L.LatLngBoundsExpression;
+    isFullscreen: boolean;
+}) {
     const map = useMap();
+
     useEffect(() => {
-        if (bounds) {
-            map.fitBounds(bounds, { padding: [50, 50], maxZoom: 14 });
-        }
-    }, [bounds, map]);
+        const timer = setTimeout(() => {
+            map.invalidateSize();
+            if (viewMode === 'package') {
+                map.flyTo(currentCoords, 13, { duration: 1.2 });
+            } else if (viewMode === 'route' && bounds) {
+                map.fitBounds(bounds, { padding: [60, 60], maxZoom: 14 });
+            }
+        }, 150);
+        return () => clearTimeout(timer);
+    }, [viewMode, currentCoords, bounds, isFullscreen, map]);
+
     return null;
 }
 
@@ -95,9 +114,11 @@ export default function LiveMap({
     destinationLng,
     destinationName,
     currentLocationName,
-    zoom = 8
+    zoom = 13
 }: LiveMapProps) {
     const [isMounted, setIsMounted] = useState(false);
+    const [viewMode, setViewMode] = useState<'package' | 'route'>('package');
+    const [isFullscreen, setIsFullscreen] = useState(false);
 
     // Resolve Origin Coordinates
     let startCoords: [number, number] = [32.7767, -96.7970]; // Default Dallas
@@ -136,18 +157,17 @@ export default function LiveMap({
         setIsMounted(true);
     }, []);
 
-    // Animate moving package icon along route from Origin -> Current -> Destination -> Origin
+    // Animate moving package icon along route
     useEffect(() => {
         if (!isMounted) return;
 
         let progress = 0;
-        const speed = 0.005; // speed factor
+        const speed = 0.005;
 
         const interval = setInterval(() => {
             progress += speed;
             if (progress > 1) progress = 0;
 
-            // Interpolate position along path: start -> current (0 to 0.6), current -> dest (0.6 to 1)
             let newLat: number, newLng: number;
             if (progress <= 0.65) {
                 const t = progress / 0.65;
@@ -173,26 +193,73 @@ export default function LiveMap({
         destCoords
     ];
 
+    const toggleFullscreen = () => {
+        setIsFullscreen(!isFullscreen);
+    };
+
     return (
-        <div className="w-full h-full relative">
+        <div className={`w-full h-full relative ${isFullscreen ? 'fixed inset-0 z-[9999] bg-slate-900 p-4 sm:p-8 flex flex-col' : ''}`}>
+            {/* Overlay Map View Controls */}
+            <div className="absolute top-4 right-4 z-[450] flex items-center gap-2">
+                <button
+                    type="button"
+                    onClick={() => setViewMode('package')}
+                    className={`px-3 py-2 rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-lg backdrop-blur-md border ${
+                        viewMode === 'package' 
+                            ? 'bg-primary text-white border-primary shadow-primary/30' 
+                            : 'bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-900 hover:text-white'
+                    }`}
+                    title="Zoom in on package location"
+                >
+                    <Navigation size={14} className={viewMode === 'package' ? 'animate-bounce' : ''} />
+                    <span>Focus Package</span>
+                </button>
+                
+                <button
+                    type="button"
+                    onClick={() => setViewMode('route')}
+                    className={`px-3 py-2 rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-lg backdrop-blur-md border ${
+                        viewMode === 'route' 
+                            ? 'bg-primary text-white border-primary shadow-primary/30' 
+                            : 'bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-900 hover:text-white'
+                    }`}
+                    title="Show entire route"
+                >
+                    <Compass size={14} />
+                    <span>Full Route</span>
+                </button>
+
+                <button
+                    type="button"
+                    onClick={toggleFullscreen}
+                    className="p-2.5 rounded-xl bg-slate-900/80 text-slate-300 border border-white/10 hover:bg-slate-900 hover:text-white transition-all shadow-lg backdrop-blur-md"
+                    title={isFullscreen ? "Exit Fullscreen" : "Fullscreen Map"}
+                >
+                    {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                </button>
+            </div>
+
             <MapContainer
                 center={currentCoords}
-                zoom={zoom}
+                zoom={13}
                 className="w-full h-full rounded-sm z-0"
-                scrollWheelZoom={false}
+                scrollWheelZoom={true}
+                doubleClickZoom={true}
+                touchZoom={true}
+                zoomControl={true}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
                 />
 
-                {/* Traversed Path: Origin -> Current Location (Solid Glowing Primary Color Line) */}
+                {/* Traversed Path: Origin -> Current Location */}
                 <Polyline
                     positions={[startCoords, currentCoords]}
                     pathOptions={{ color: '#0070F3', weight: 6, opacity: 0.8 }}
                 />
 
-                {/* Remaining Path: Current Location -> Destination (Dashed Line) */}
+                {/* Remaining Path: Current Location -> Destination */}
                 <Polyline
                     positions={[currentCoords, destCoords]}
                     pathOptions={{ color: '#64748B', weight: 4, dashArray: '8, 10', opacity: 0.6 }}
@@ -225,7 +292,12 @@ export default function LiveMap({
                     </Popup>
                 </Marker>
 
-                <FitBoundsView bounds={bounds} />
+                <MapFocusController 
+                    currentCoords={currentCoords} 
+                    viewMode={viewMode} 
+                    bounds={bounds} 
+                    isFullscreen={isFullscreen} 
+                />
             </MapContainer>
         </div>
     );
