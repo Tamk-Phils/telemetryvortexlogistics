@@ -142,9 +142,7 @@ Support Email: support@swiftlinkshipping.com
                 html: htmlContent,
                 headers: {
                     'X-Mailer': 'SwiftLink-Shipping/1.0',
-                    'X-Priority': '1 (Highest)',
-                    'Priority': 'urgent',
-                    'Importance': 'high',
+                    'Auto-Submitted': 'auto-generated',
                     'List-Unsubscribe': `<mailto:${replyToAddress}?subject=unsubscribe>`
                 }
             });
@@ -245,9 +243,7 @@ Support Email: support@swiftlinkshipping.com
                 html: htmlContent,
                 headers: {
                     'X-Mailer': 'SwiftLink-Shipping/1.0',
-                    'X-Priority': '1 (Highest)',
-                    'Priority': 'urgent',
-                    'Importance': 'high',
+                    'Auto-Submitted': 'auto-generated',
                     'List-Unsubscribe': `<mailto:${replyToAddress}?subject=unsubscribe>`
                 }
             });
