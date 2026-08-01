@@ -1,6 +1,6 @@
 /**
  * Live SMTP Email Verification Test Script
- * Dispatches test transactional email to phils787@gmail.com
+ * Dispatches test transactional email to tchophilding@icloud.com
  * Run with: node scripts/test_email.js
  */
 
@@ -12,19 +12,19 @@ const nodemailer = require('nodemailer');
 dotenv.config({ path: path.join(__dirname, '../.env.local') });
 
 console.log("==================================================");
-console.log("📧 VORTEX SHIPPING PLATFORM - LIVE SMTP TEST");
+console.log("📧 SWIFTLINK SHIPPING - LIVE SMTP ICLOUD TEST");
 console.log("==================================================\n");
 
-const targetEmail = process.argv[2] || "phils787@gmail.com";
+const targetEmail = process.argv[2] || "tchophilding@icloud.com";
 
 async function createTransporter(port, secure) {
     return nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.spacemail.com',
+        host: process.env.SMTP_HOST || 'mail.spacemail.com',
         port: port,
         secure: secure,
         auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
+            user: process.env.SMTP_USER || 'support@swiftlinkshipping.com',
+            pass: process.env.SMTP_PASS || 'Marc1234?',
         },
         connectionTimeout: 10000,
         greetingTimeout: 10000,
@@ -37,8 +37,8 @@ async function createTransporter(port, secure) {
 
 async function runSmtpTest() {
     const portsToTry = [
-        { port: 587, secure: false },
         { port: 465, secure: true },
+        { port: 587, secure: false },
         { port: 25, secure: false }
     ];
 
@@ -60,32 +60,38 @@ async function runSmtpTest() {
     }
 
     if (!workingTransporter) {
-        console.error("\n❌ ALL SMTP PORTS (587, 465, 25) TIMED OUT. Check local firewall / ISP blocking.");
+        console.error("\n❌ ALL SMTP PORTS (465, 587, 25) TIMED OUT. Check network connection.");
         process.exit(1);
     }
 
     console.log(`Dispatching Live Test Shipment Notification to: ${targetEmail}...`);
 
-    const trackingNumber = `VTX${Math.floor(100000000 + Math.random() * 900000000)}`;
+    const trackingNumber = `SWL${Math.floor(100000000 + Math.random() * 900000000)}`;
 
     const mailOptions = {
-        from: `"${process.env.FROM_NAME || 'Vortex Shipping'}" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`,
+        from: `"${process.env.FROM_NAME || 'SwiftLink Shipping'}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || 'support@swiftlinkshipping.com'}>`,
         to: targetEmail,
-        subject: `[Vortex Shipping] Operational Confirmation - Tracking ${trackingNumber}`,
+        replyTo: process.env.FROM_EMAIL || process.env.SMTP_USER || 'support@swiftlinkshipping.com',
+        subject: `SwiftLink Shipping: Delivery Notification ${trackingNumber}`,
+        headers: {
+            'X-Mailer': 'SwiftLink-Shipping/1.0',
+            'Auto-Submitted': 'auto-generated',
+            'List-Unsubscribe': `<mailto:support@swiftlinkshipping.com?subject=unsubscribe>`
+        },
         html: `
             <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff;">
                 <div style="background-color: #050508; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
-                    <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">VORTEX SHIPPING PLATFORM</h1>
+                    <h1 style="color: #0070F3; margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">SWIFTLINK SHIPPING</h1>
                     <p style="color: #ffffff; margin: 5px 0 0; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7;">Live System Test & Dispatch Verification</p>
                 </div>
                 <div style="padding: 40px; background-color: #ffffff;">
-                    <h2 style="color: #0f172a; font-size: 20px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">Automated Email Verification</h2>
+                    <h2 style="color: #0f172a; font-size: 20px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">Automated Delivery Verification</h2>
                     <p style="color: #475569; font-size: 14px; line-height: 1.6; font-weight: 500;">
-                        Hello, this is an automated delivery confirmation test dispatched from the <strong>Vortex Shipping Logistics Engine</strong> to verify live SMTP delivery.
+                        Hello, this is an automated delivery test dispatched from the <strong>SwiftLink Shipping Logistics Platform</strong> to verify live SMTP delivery to your inbox.
                     </p>
                     
                     <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border: 1px solid #e2e8f0;">
-                        <p style="color: #94a3b8; font-size: 10px; margin: 0 0 8px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Live Tracking Signature</p>
+                        <p style="color: #94a3b8; font-size: 10px; margin: 0 0 8px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">Tracking Signature</p>
                         <p style="color: #0070f3; font-family: monospace; font-size: 26px; font-weight: 900; margin: 0;">
                             ${trackingNumber}
                         </p>
@@ -115,11 +121,11 @@ async function runSmtpTest() {
                     </table>
 
                     <div style="text-align: center; margin-top: 30px;">
-                        <a href="https://vortex-shipping.com/tracking" style="background-color: #0070F3; color: white; padding: 16px 32px; text-decoration: none; border-radius: 6px; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block;">Access Tracking Portal</a>
+                        <a href="https://swiftlinkshipping.com/tracking" style="background-color: #0070F3; color: white; padding: 16px 32px; text-decoration: none; border-radius: 6px; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block;">Access Tracking Portal</a>
                     </div>
                 </div>
                 <div style="text-align: center; padding: 20px; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase;">
-                    <p>© 2026 Vortex Shipping Logistics. Operational Integrity Verified.</p>
+                    <p>© 2026 SwiftLink Shipping Logistics. Operational Integrity Verified.</p>
                 </div>
             </div>
         `
@@ -135,6 +141,9 @@ async function runSmtpTest() {
         console.log("==================================================\n");
     } catch (err) {
         console.error("\n❌ SEND MAIL ERROR:", err.message);
+        console.error("Full email error:", err);
+        console.error("Response:", err?.response);
+        console.error("Response code:", err?.responseCode);
         process.exit(1);
     }
 }

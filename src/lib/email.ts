@@ -148,9 +148,12 @@ Support Email: support@swiftlinkshipping.com
             });
             sentCount++;
             console.log(`Email successfully dispatched to: ${recipient}`);
-        } catch (error) {
+        } catch (error: any) {
             lastError = error;
             console.error(`Nodemailer dispatch error for ${recipient}:`, error);
+            console.error("Full email error:", error);
+            console.error("Response:", error?.response);
+            console.error("Response code:", error?.responseCode);
         }
     }
 
@@ -249,9 +252,12 @@ Support Email: support@swiftlinkshipping.com
             });
             sentCount++;
             console.log(`Update email successfully dispatched to: ${recipient}`);
-        } catch (error) {
+        } catch (error: any) {
             lastError = error;
             console.error(`Nodemailer update dispatch error for ${recipient}:`, error);
+            console.error("Full email error:", error);
+            console.error("Response:", error?.response);
+            console.error("Response code:", error?.responseCode);
         }
     }
 
