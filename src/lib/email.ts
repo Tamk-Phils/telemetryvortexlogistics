@@ -72,7 +72,7 @@ export async function sendShipmentCreatedEmail({
     const trackingLink = getTrackingLink();
     const mailIdentity = getMailIdentity();
     const recipient = cleanAddress(to);
-    const adminCopy = cleanAddress(adminEmail);
+    const adminCopy = cleanAddress(adminEmail) || mailIdentity.address;
 
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">

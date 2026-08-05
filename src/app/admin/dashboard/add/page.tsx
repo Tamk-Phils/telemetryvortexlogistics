@@ -108,11 +108,10 @@ export default function AddShipment() {
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
             localStorage.setItem("swiftlink_shipments", JSON.stringify(existing));
 
-            if (formData.recipient_email || formData.sender_email) {
+            if (formData.recipient_email) {
                 try {
                     await notifyShipmentCreated({
-                        to: formData.recipient_email || formData.sender_email,
-                        adminEmail: formData.sender_email,
+                        to: formData.recipient_email,
                         subject: `SwiftLink Shipping: Package ${formData.tracking_number} Registered`,
                         trackingNumber: formData.tracking_number,
                         senderName: formData.sender_name || 'SwiftLink Admin',
