@@ -46,6 +46,19 @@ interface UpdateShipmentParams extends BaseEmailParams {
 
 const getTrackingLink = () => `${process.env.NEXT_PUBLIC_APP_URL || "https://swiftlinkshipping.com"}/tracking`;
 
+function getMailIdentity() {
+    const address = (process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com").trim();
+    return {
+        address,
+        name: process.env.FROM_NAME || "SwiftLink Shipping"
+    };
+}
+
+function cleanAddress(value?: string) {
+    const trimmed = value?.trim();
+    return trimmed ? trimmed : undefined;
+}
+
 export async function sendShipmentCreatedEmail({
     to,
     adminEmail,
@@ -57,6 +70,9 @@ export async function sendShipmentCreatedEmail({
     destination
 }: NewShipmentParams) {
     const trackingLink = getTrackingLink();
+    const mailIdentity = getMailIdentity();
+    const recipient = cleanAddress(to);
+    const adminCopy = cleanAddress(adminEmail);
 
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
@@ -119,45 +135,35 @@ Thank you for choosing SwiftLink Shipping Logistics.
 Support Email: support@swiftlinkshipping.com
 `;
 
-    const recipientList = Array.from(new Set([
-        to,
-        adminEmail,
-        process.env.FROM_EMAIL,
-        process.env.SMTP_USER
-    ].filter(Boolean).map(e => (e as string).trim())));
-
-    const fromAddress = `"${process.env.FROM_NAME || "SwiftLink Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
-    const replyToAddress = process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com";
-
-    let sentCount = 0;
-    let lastError: any = null;
-    for (const recipient of recipientList) {
-        try {
-            await getTransporter().sendMail({
-                from: fromAddress,
-                to: recipient,
-                replyTo: replyToAddress,
-                subject: subject,
-                text: textContent,
-                html: htmlContent,
-                headers: {
-                    'X-Mailer': 'SwiftLink-Shipping/1.0',
-                    'Auto-Submitted': 'auto-generated',
-                    'List-Unsubscribe': `<mailto:${replyToAddress}?subject=unsubscribe>`
-                }
-            });
-            sentCount++;
-            console.log(`Email successfully dispatched to: ${recipient}`);
-        } catch (error: any) {
-            lastError = error;
-            console.error(`Nodemailer dispatch error for ${recipient}:`, error);
-            console.error("Full email error:", error);
-            console.error("Response:", error?.response);
-            console.error("Response code:", error?.responseCode);
-        }
+    if (!recipient) {
+        return { success: false, error: new Error("Missing recipient address") };
     }
 
-    return { success: sentCount > 0, error: sentCount === 0 ? lastError : undefined };
+    try {
+        await getTransporter().sendMail({
+            from: mailIdentity,
+            to: recipient,
+            bcc: adminCopy && adminCopy !== recipient ? adminCopy : undefined,
+            replyTo: mailIdentity.address,
+            subject,
+            text: textContent,
+            html: htmlContent,
+            headers: {
+                'X-Mailer': 'SwiftLink-Shipping/1.0'
+            }
+        });
+        console.log(`Email successfully dispatched to: ${recipient}`);
+        if (adminCopy && adminCopy !== recipient) {
+            console.log(`Admin copy included for: ${adminCopy}`);
+        }
+        return { success: true, error: undefined };
+    } catch (error: any) {
+        console.error(`Nodemailer dispatch error for ${recipient}:`, error);
+        console.error("Full email error:", error);
+        console.error("Response:", error?.response);
+        console.error("Response code:", error?.responseCode);
+        return { success: false, error };
+    }
 }
 
 export async function sendShipmentUpdateEmail({
@@ -170,6 +176,8 @@ export async function sendShipmentUpdateEmail({
     description
 }: UpdateShipmentParams) {
     const trackingLink = getTrackingLink();
+    const mailIdentity = getMailIdentity();
+    const recipient = cleanAddress(to);
 
     const htmlContent = `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 4px; background-color: #ffffff;">
@@ -224,42 +232,29 @@ Track package online at: ${trackingLink}
 Support Email: support@swiftlinkshipping.com
 `;
 
-    const recipientList = Array.from(new Set([
-        to,
-        process.env.FROM_EMAIL,
-        process.env.SMTP_USER
-    ].filter(Boolean).map(e => (e as string).trim())));
-
-    const fromAddress = `"${process.env.FROM_NAME || "SwiftLink Shipping"}" <${process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com"}>`;
-    const replyToAddress = process.env.FROM_EMAIL || process.env.SMTP_USER || "support@swiftlinkshipping.com";
-
-    let sentCount = 0;
-    let lastError: any = null;
-    for (const recipient of recipientList) {
-        try {
-            await getTransporter().sendMail({
-                from: fromAddress,
-                to: recipient,
-                replyTo: replyToAddress,
-                subject: subject,
-                text: textContent,
-                html: htmlContent,
-                headers: {
-                    'X-Mailer': 'SwiftLink-Shipping/1.0',
-                    'Auto-Submitted': 'auto-generated',
-                    'List-Unsubscribe': `<mailto:${replyToAddress}?subject=unsubscribe>`
-                }
-            });
-            sentCount++;
-            console.log(`Update email successfully dispatched to: ${recipient}`);
-        } catch (error: any) {
-            lastError = error;
-            console.error(`Nodemailer update dispatch error for ${recipient}:`, error);
-            console.error("Full email error:", error);
-            console.error("Response:", error?.response);
-            console.error("Response code:", error?.responseCode);
-        }
+    if (!recipient) {
+        return { success: false, error: new Error("Missing recipient address") };
     }
 
-    return { success: sentCount > 0, error: sentCount === 0 ? lastError : undefined };
+    try {
+        await getTransporter().sendMail({
+            from: mailIdentity,
+            to: recipient,
+            replyTo: mailIdentity.address,
+            subject,
+            text: textContent,
+            html: htmlContent,
+            headers: {
+                'X-Mailer': 'SwiftLink-Shipping/1.0'
+            }
+        });
+        console.log(`Update email successfully dispatched to: ${recipient}`);
+        return { success: true, error: undefined };
+    } catch (error: any) {
+        console.error(`Nodemailer update dispatch error for ${recipient}:`, error);
+        console.error("Full email error:", error);
+        console.error("Response:", error?.response);
+        console.error("Response code:", error?.responseCode);
+        return { success: false, error };
+    }
 }
