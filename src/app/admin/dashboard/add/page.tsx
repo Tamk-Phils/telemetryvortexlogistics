@@ -34,7 +34,7 @@ export default function AddShipment() {
         weight: "15",
         dimensions: "12x12x12",
         service_level: "Priority Air Express",
-        carrier: "SwiftLink Air Express Fleet",
+        carrier: "swiftlnk Air Express Fleet",
         declared_value: "150.00",
         quantity: "1",
         current_status: "Pending",
@@ -103,18 +103,18 @@ export default function AddShipment() {
             }
 
             // Always ensure local cache storage copy exists
-            const existingRaw = localStorage.getItem("swiftlink_shipments") || localStorage.getItem("vortex_shipments");
+            const existingRaw = localStorage.getItem("swiftlnk_shipments") || localStorage.getItem("vortex_shipments");
             const existing: any[] = existingRaw ? JSON.parse(existingRaw) : [];
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
-            localStorage.setItem("swiftlink_shipments", JSON.stringify(existing));
+            localStorage.setItem("swiftlnk_shipments", JSON.stringify(existing));
 
             if (formData.recipient_email) {
                 try {
                     await notifyShipmentCreated({
                         to: formData.recipient_email,
-                        subject: `SwiftLink Shipping: Package ${formData.tracking_number} Registered`,
+                        subject: `swiftlnk Shipping: Package ${formData.tracking_number} Registered`,
                         trackingNumber: formData.tracking_number,
-                        senderName: formData.sender_name || 'SwiftLink Admin',
+                        senderName: formData.sender_name || 'swiftlnk Admin',
                         recipientName: formData.recipient_name || 'Recipient',
                         origin: formData.origin || 'Source Hub',
                         destination: formData.destination || 'Destination Hub'
@@ -128,10 +128,10 @@ export default function AddShipment() {
         } catch (err: any) {
             console.error("Shipment Registration Error:", err);
             // Fallback save to ensure administrative workflow is uninterrupted
-            const existingRaw = localStorage.getItem("swiftlink_shipments") || localStorage.getItem("vortex_shipments");
+            const existingRaw = localStorage.getItem("swiftlnk_shipments") || localStorage.getItem("vortex_shipments");
             const existing: any[] = existingRaw ? JSON.parse(existingRaw) : [];
             existing.push({ ...newShipment, id: Math.random().toString(36).substr(2, 9) });
-            localStorage.setItem("swiftlink_shipments", JSON.stringify(existing));
+            localStorage.setItem("swiftlnk_shipments", JSON.stringify(existing));
             router.push("/admin/dashboard/shipments");
         } finally {
             setIsSaving(false);
@@ -226,7 +226,7 @@ export default function AddShipment() {
                                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1">Carrier Transport</label>
                                 <input
                                     type="text"
-                                    placeholder="e.g. SwiftLink Fleet Air"
+                                    placeholder="e.g. swiftlnk Fleet Air"
                                     className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3.5 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
                                     value={formData.carrier}
                                     onChange={(e) => setFormData({ ...formData, carrier: e.target.value })}
@@ -318,7 +318,7 @@ export default function AddShipment() {
                                         <input
                                             type="email"
                                             required
-                                            placeholder="admin@swiftlinkshipping.com"
+                                            placeholder="admin@swiftlnkshipping.com"
                                             className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 focus:border-primary font-bold text-xs text-slate-900 outline-none"
                                             value={formData.sender_email}
                                             onChange={(e) => setFormData({ ...formData, sender_email: e.target.value })}

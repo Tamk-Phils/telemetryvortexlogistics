@@ -17,34 +17,34 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "SwiftLink Shipping | Global Freight & Package Tracking",
-    template: "%s | SwiftLink Shipping"
+    default: "swiftlnk Shipping | Global Freight & Package Tracking",
+    template: "%s | swiftlnk Shipping"
   },
-  description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with SwiftLink Shipping.",
-  keywords: ["package tracking", "swiftlink shipping", "swiftlink", "shipping company", "express delivery", "global freight", "cargo tracking"],
-  authors: [{ name: "SwiftLink Shipping Team" }],
-  creator: "SwiftLink Shipping",
-  publisher: "SwiftLink Shipping Logistics",
+  description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with swiftlnk Shipping.",
+  keywords: ["package tracking", "swiftlnk shipping", "swiftlnk", "shipping company", "express delivery", "global freight", "cargo tracking"],
+  authors: [{ name: "swiftlnk Shipping Team" }],
+  creator: "swiftlnk Shipping",
+  publisher: "swiftlnk Shipping Logistics",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://swiftlinkshipping.com"),
+  metadataBase: new URL("https://swiftlnkshipping.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "SwiftLink Shipping | Global Freight & Package Tracking",
-    description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with SwiftLink Shipping.",
-    url: "https://swiftlinkshipping.com",
-    siteName: "SwiftLink Shipping Logistics",
+    title: "swiftlnk Shipping | Global Freight & Package Tracking",
+    description: "Global logistics, express air transit, ocean freight, and real-time package tracking. Fast, secure delivery with swiftlnk Shipping.",
+    url: "https://swiftlnkshipping.com",
+    siteName: "swiftlnk Shipping Logistics",
     images: [
       {
         url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
         width: 1200,
         height: 630,
-        alt: "SwiftLink Shipping Logistics",
+        alt: "swiftlnk Shipping Logistics",
       },
     ],
     locale: "en_US",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SwiftLink Shipping | Global Freight & Package Tracking",
-    description: "Global logistics, express air transit, ocean freight, and real-time package tracking with SwiftLink Shipping.",
+    title: "swiftlnk Shipping | Global Freight & Package Tracking",
+    description: "Global logistics, express air transit, ocean freight, and real-time package tracking with swiftlnk Shipping.",
     images: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200"],
   },
   robots: {
@@ -77,13 +77,13 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LogisticsService",
-  "name": "SwiftLink Shipping Logistics",
-  "url": "https://swiftlinkshipping.com",
-  "logo": "https://swiftlinkshipping.com/favicon.ico",
+  "name": "swiftlnk Shipping Logistics",
+  "url": "https://swiftlnkshipping.com",
+  "logo": "https://swiftlnkshipping.com/favicon.ico",
   "description": "Global freight forwarding, air transit, and real-time package tracking portal.",
-  "email": "support@swiftlinkshipping.com",
+  "email": "support@swiftlnkshipping.com",
   "sameAs": [
-    "https://swiftlinkshipping.com"
+    "https://swiftlnkshipping.com"
   ],
   "areaServed": "Worldwide"
 };

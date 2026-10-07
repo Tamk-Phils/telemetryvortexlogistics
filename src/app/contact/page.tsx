@@ -53,8 +53,8 @@ export default function ContactPage() {
                             icon: Mail, 
                             title: "EMAIL SUPPORT", 
                             desc: "Send us a direct message for package inquiries, dispatch updates, and account support.", 
-                            action: "SUPPORT@SWIFTLINKSHIPPING.COM", 
-                            href: "mailto:support@swiftlinkshipping.com",
+                            action: "SUPPORT@swiftlnkSHIPPING.COM",
+                            href: "mailto:support@swiftlnkshipping.com",
                             color: "text-primary" 
                         }
                     ].map((item, i) => (
@@ -105,7 +105,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <p className="font-black text-white text-[10px] uppercase tracking-widest mb-1">OFFICIAL EMAIL</p>
-                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight break-all">support@swiftlinkshipping.com</p>
+                                        <p className="text-white/40 text-xs font-bold uppercase tracking-tight break-all">support@swiftlnkshipping.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-6">

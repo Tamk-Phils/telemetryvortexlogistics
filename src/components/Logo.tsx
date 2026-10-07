@@ -33,7 +33,7 @@ export default function Logo({ className = "w-10 h-10" }: { className?: string }
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                 />
 
-                {/* SwiftLink Logo Element */}
+                {/* swiftlnk Logo Element */}
                 <path 
                     d="M30 35H70M50 35V75" 
                     stroke="url(#logoGradient)" 

@@ -38,7 +38,7 @@ export default function ShipmentsList() {
 
     const loadShipments = async () => {
         // Optimistic Load
-        const cached = localStorage.getItem("swiftlink_shipments") || localStorage.getItem("vortex_shipments");
+        const cached = localStorage.getItem("swiftlnk_shipments") || localStorage.getItem("vortex_shipments");
         if (cached) {
             setShipments(JSON.parse(cached) as Shipment[]);
         }
@@ -59,7 +59,7 @@ export default function ShipmentsList() {
 
             if (data) {
                 setShipments(data as Shipment[]);
-                localStorage.setItem("swiftlink_shipments", JSON.stringify(data));
+                localStorage.setItem("swiftlnk_shipments", JSON.stringify(data));
             }
         } catch (err: any) {
             clearTimeout(timeoutId);
@@ -89,7 +89,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("swiftlink_shipments", JSON.stringify(updated));
+            localStorage.setItem("swiftlnk_shipments", JSON.stringify(updated));
         } catch (err) {
             console.error(err);
             alert("Failed to archive transit.");
@@ -110,7 +110,7 @@ export default function ShipmentsList() {
                 return s;
             });
             setShipments(updated);
-            localStorage.setItem("swiftlink_shipments", JSON.stringify(updated));
+            localStorage.setItem("swiftlnk_shipments", JSON.stringify(updated));
             alert(`Delivery ${id} restored successfully.`);
         } catch (err) {
             console.error(err);
@@ -175,12 +175,12 @@ export default function ShipmentsList() {
             });
 
             setShipments(updatedShipments);
-            localStorage.setItem("swiftlink_shipments", JSON.stringify(updatedShipments));
+            localStorage.setItem("swiftlnk_shipments", JSON.stringify(updatedShipments));
 
             if (editingShipment.recipient_email) {
                 await notifyShipmentUpdate({
                     to: editingShipment.recipient_email,
-                    subject: `SwiftLink Shipping: Delivery Update ${editingShipment.tracking_number}`,
+                    subject: `swiftlnk Shipping: Delivery Update ${editingShipment.tracking_number}`,
                     trackingNumber: editingShipment.tracking_number,
                     recipientName: editingShipment.recipient_name || 'Operator',
                     newStatus: newUpdate.status,
