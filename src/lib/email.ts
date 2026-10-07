@@ -3,9 +3,12 @@ import nodemailer from 'nodemailer';
 function getTransporter() {
     const host = process.env.SMTP_HOST || 'mail.spacemail.com';
     const port = parseInt(process.env.SMTP_PORT || '465');
-    const user = process.env.SMTP_USER || 'support@swiftlnkshipping.com';
-    const pass = process.env.SMTP_PASS || 'Marc1234?';
+        const user = process.env.SMTP_USER;
+        const pass = process.env.SMTP_PASS;
 
+        if (!user || !pass) {
+            throw new Error('SMTP_USER and SMTP_PASS must be configured');
+        }
     return nodemailer.createTransport({
         host: host,
         port: port,

@@ -22,9 +22,9 @@ async function createTransporter(port, secure) {
         host: process.env.SMTP_HOST || 'mail.spacemail.com',
         port: port,
         secure: secure,
-        auth: {
-            user: process.env.SMTP_USER || 'support@swiftlnkshipping.com',
-            pass: process.env.SMTP_PASS || 'Marc1234?',
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
         },
         connectionTimeout: 10000,
         greetingTimeout: 10000,
